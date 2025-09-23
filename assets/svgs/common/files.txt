@@ -1,0 +1,11 @@
+static const appbarCommonBackDarkSvg = 'assets/svgs/common/appbar_common_back_dark.svg';
+static const appbarCommonBackDarkPressSvg = 'assets/svgs/common/appbar_common_back_dark_press.svg';
+static const appbarCommonBackLightSvg = 'assets/svgs/common/appbar_common_back_light.svg';
+static const appbarCommonBackLightPressSvg = 'assets/svgs/common/appbar_common_back_light_press.svg';
+static const iconCommonArrowRightSvg = 'assets/svgs/common/icon_common_arrow_right.svg';
+static const iconCommonCheckedSvg = 'assets/svgs/common/icon_common_checked.svg';
+static const iconCommonCloseDarkSvg = 'assets/svgs/common/icon_common_close_dark.svg';
+static const iconCommonCloseLightSvg = 'assets/svgs/common/icon_common_close_light.svg';
+
+static const iconCommonDownwardSvg = 'assets/svgs/common/icon_common_downward.svg';
+static const iconCommonUncheckSvg = 'assets/svgs/common/icon_common_uncheck.svg';

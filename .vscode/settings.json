@@ -1,0 +1,64 @@
+{
+    // 编辑器设置
+    "editor.allowVariableFonts": true,
+    "editor.fontFamily": "PingFang HK",
+    "editor.fontWeight": "400",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    
+    // 工作台设置
+    "workbench.colorTheme": "Default Light Modern",
+    
+    // 调试设置
+    "commentTranslate.source": "Copilot",
+    "debug.console.history": 10000,
+    "debug.console.wordWrap": true,
+    
+    // Dart & Flutter 设置
+    "dart.flutterSdkPath": null,
+    "dart.showInspectorNotificationsForWidgetErrors": true,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "dart.closingLabels": true,
+    "dart.lineLength": 120,
+    
+    // 文件关联
+    "files.associations": {
+        "*.dart": "dart"
+    },
+    
+    // 搜索设置
+    "search.exclude": {
+        "**/build": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true,
+        "**/.pub-cache": true,
+        "**/.dart_tool": true
+    },
+    
+    // 监视设置
+    "files.watcherExclude": {
+        "**/build/**": true,
+        "**/.dart_tool/**": true,
+        "**/.pub-cache/**": true
+    },
+    
+    // Flutter 特定设置
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [120],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    }
+}

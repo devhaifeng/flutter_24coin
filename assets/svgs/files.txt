@@ -1,0 +1,2 @@
+static const splashSvg = 'assets/svgs/splash.svg';
+static const welcomeSvg = 'assets/svgs/welcome.svg';

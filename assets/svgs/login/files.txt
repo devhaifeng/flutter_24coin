@@ -1,0 +1,14 @@
+static const iconCountryBengalSvg = 'assets/svgs/login/icon_country_bengal.svg';
+static const iconCountryCambodiaSvg = 'assets/svgs/login/icon_country_cambodia.svg';
+static const iconCountryGeorgiaSvg = 'assets/svgs/login/icon_country_georgia.svg';
+static const iconCountryIndiaSvg = 'assets/svgs/login/icon_country_india.svg';
+static const iconCountryJapanSvg = 'assets/svgs/login/icon_country_japan.svg';
+static const iconCountrySingaporeSvg = 'assets/svgs/login/icon_country_singapore.svg';
+static const iconCountryTaiwanSvg = 'assets/svgs/login/icon_country_taiwan.svg';
+static const iconCountyPakistanSvg = 'assets/svgs/login/icon_county_pakistan.svg';
+static const iconInputClearSvg = 'assets/svgs/login/icon_input_clear.svg';
+static const iconNetLineRefreshSvg = 'assets/svgs/login/icon_net_line_refresh.svg';
+static const loginLanguageSvg = 'assets/svgs/login/login_language.svg';
+static const loginNetLineSvg = 'assets/svgs/login/login_net_line.svg';
+static const loginPasswordGoneSvg = 'assets/svgs/login/login_password_gone.svg';
+static const loginPasswordVisiableSvg = 'assets/svgs/login/login_password_visiable.svg';

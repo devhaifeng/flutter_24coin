@@ -11,7 +11,6 @@ class WalletApi {
   ///获取币种列表
   static Future<BaseListResponse<CoinAllowData>> getAllowedCoinList() async {
     final response = await WPHttpService.to.post('/dc/wallet/coin/list');
-    print('获取允许的币种列表响应: ${response.data}');
     return BaseListResponse<CoinAllowData>.fromJson(response.data, (data) => CoinAllowData.fromJson(data));
   }
 }

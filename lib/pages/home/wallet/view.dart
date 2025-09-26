@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_24coin/common/index.dart';
@@ -206,31 +207,72 @@ class _WalletViewGetX extends GetView<WalletController> {
   Widget _buildView(BuildContext context) {
     var commonDivideColor = Get.isDarkMode ? Color(0xFF2B3843) : Color(0xFFF5F5F5);
     return <Widget>[
-      Container(
-        width: double.infinity,
-        color: Theme.of(context).colorScheme.surfaceContainer,
-        height: 50,
-        child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(17),
+      DropdownButtonHideUnderline(
+        child: DropdownButton2<CoinAllowData>(
+          // 按钮样式
+          customButton: Container(
+            width: double.infinity,
+            color: Theme.of(context).colorScheme.surfaceContainer,
+            height: 50,
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(17),
+                ),
+                child: <Widget>[
+                      ImageWidget.img(
+                        AssetsImages.iconWalletCoinPng,
+                        width: 18,
+                        height: 18,
+                        radius: 0,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(width: 6),
+                      TextWidget.label("24Coin", size: 15, weight: FontWeight.w400),
+                      SizedBox(width: 2),
+                      IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
+                    ]
+                    .toRow(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    )
+                    .paddingHorizontal(10)
+                    .height(34),
+              ),
             ),
-            child: <Widget>[
-                  ImageWidget.img(AssetsImages.iconWalletCoinPng, width: 18, height: 18, radius: 0, fit: BoxFit.cover),
-                  SizedBox(width: 6),
-                  TextWidget.label("24Coin", size: 15, weight: FontWeight.w400),
-                  SizedBox(width: 2),
-                  IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
-                ]
-                .toRow(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                )
-                .paddingHorizontal(10)
-                .height(34),
           ),
+          dropdownStyleData: DropdownStyleData(
+            width: 130,
+            padding: null,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceContainer,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            elevation: 0,
+            offset: Offset(140, -5),
+            scrollbarTheme: ScrollbarThemeData(
+              radius: Radius.circular(40),
+              thickness: WidgetStateProperty.all(6),
+              thumbColor: WidgetStateProperty.all(Colors.grey.shade400),
+            ),
+          ),
+          // 扩展
+          isExpanded: false,
+          // 提示组件
+          // 下拉项列表
+          items:
+              controller.allowedCoinList
+                  ?.map(
+                    (item) =>
+                        DropdownMenuItem<CoinAllowData>(value: item, child: TextWidget.label(item.appDisplay ?? "")),
+                  )
+                  .toList(),
+          // 选中项
+          value: controller.allowedCoinList?.firstWhere((element) => element.isSelected!),
+          // 改变事件
+          onChanged: controller.onSelectorCoinChanged,
         ),
       ),
       Expanded(

@@ -34,6 +34,7 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   ///资讯
   int startPage = -50;
   int endPage = -1;
+
   _initData() {
     update(["wallet"]);
   }
@@ -48,6 +49,7 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
 
   @override
   void onInit() async {
+    allowedCoinList?.add(CoinAllowData(value: -1, appDisplay: '24Coin', isSelected: true));
     generatedUUID = uuid.v4().replaceAll('-', '');
     tabController = TabController(length: 5, vsync: this);
     initSocketService();
@@ -128,6 +130,15 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   Future<void> getAllowedCoinList() async {
     BaseListResponse<CoinAllowData> model = await WalletApi.getAllowedCoinList();
     allowedCoinList?.addAll(model.data ?? []);
+    allowedCoinList?.removeWhere((element) => element.value == -1);
+    allowedCoinList?.forEach((element) {
+      if (element.value == 3) {
+        element.isSelected = true;
+      } else {
+        element.isSelected = false;
+      }
+    });
+
     // 处理 model 数据
     update(["wallet"]);
   }
@@ -145,5 +156,18 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
     webSocketService.disconnect();
     tabController.dispose();
     scrollController.dispose();
+  }
+
+  /// 选择币种
+  void onSelectorCoinChanged(CoinAllowData? value) {
+    if (allowedCoinList != null && allowedCoinList!.isNotEmpty) {
+      for (var element in allowedCoinList!) {
+        element.isSelected = false;
+        if (element.value == value?.value) {
+          element.isSelected = true;
+        }
+      }
+      update(['wallet']);
+    }
   }
 }

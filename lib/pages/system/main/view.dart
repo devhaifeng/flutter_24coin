@@ -2,6 +2,9 @@ import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_24coin/common/index.dart';
+import 'package:flutter_24coin/pages/home/contract/view.dart';
+import 'package:flutter_24coin/pages/home/message/view.dart';
+import 'package:flutter_24coin/pages/home/mine/view.dart';
 import 'package:flutter_24coin/pages/home/otc/index.dart';
 import 'package:flutter_24coin/pages/home/wallet/view.dart';
 import 'package:get/get.dart';
@@ -16,8 +19,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage>
-    with AutomaticKeepAliveClientMixin {
+class _MainPageState extends State<MainPage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -106,13 +108,7 @@ class _MainViewGetX extends GetView<MainController> {
               physics: NeverScrollableScrollPhysics(),
               controller: controller.pageController,
               onPageChanged: controller.onIndexChanged,
-              children: const [
-                WalletPage(),
-                OtcPage(),
-                OtcPage(),
-                OtcPage(),
-                OtcPage(),
-              ],
+              children: const [WalletPage(), OtcPage(), MessagePage(), ContractPage(), MinePage()],
             ),
           ],
         ),

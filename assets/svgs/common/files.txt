@@ -4,8 +4,11 @@ static const appbarCommonBackLightSvg = 'assets/svgs/common/appbar_common_back_l
 static const appbarCommonBackLightPressSvg = 'assets/svgs/common/appbar_common_back_light_press.svg';
 static const iconCommonArrowRightSvg = 'assets/svgs/common/icon_common_arrow_right.svg';
 static const iconCommonCheckedSvg = 'assets/svgs/common/icon_common_checked.svg';
+static const iconCommonCircleSvg = 'assets/svgs/common/icon_common_circle.svg';
 static const iconCommonCloseDarkSvg = 'assets/svgs/common/icon_common_close_dark.svg';
 static const iconCommonCloseLightSvg = 'assets/svgs/common/icon_common_close_light.svg';
-
+static const iconCommonCloseLightPressSvg = 'assets/svgs/common/icon_common_close_light_press.svg';
+static const iconCommonDotLineSvg = 'assets/svgs/common/icon_common_dot_line.svg';
 static const iconCommonDownwardSvg = 'assets/svgs/common/icon_common_downward.svg';
 static const iconCommonUncheckSvg = 'assets/svgs/common/icon_common_uncheck.svg';
+static const svgCommonTickSvg = 'assets/svgs/common/svg_common_tick.svg';

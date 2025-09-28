@@ -23,6 +23,10 @@ class AssetsSvgs {
   static const loginClearInputSvg = 'assets/svgs/login/icon_input_clear.svg';
   static const loginPasswordGoneSvg = 'assets/svgs/login/login_password_gone.svg';
 
+  static const iconCommonCircleSvg = 'assets/svgs/common/icon_common_circle.svg';
+  static const iconCommonDotLineSvg = 'assets/svgs/common/icon_common_dot_line.svg';
+  static const svgCommonTickSvg = 'assets/svgs/common/svg_common_tick.svg';
+
   ///国家国旗
   static const iconCountryBengalSvg = 'assets/svgs/login/icon_country_bengal.svg';
   static const iconCountryCambodiaSvg = 'assets/svgs/login/icon_country_cambodia.svg';
@@ -69,7 +73,5 @@ class AssetsSvgs {
   static const iconWalletTrcCoinSvg = 'assets/svgs/main/icon_wallet_trc_coin.svg';
   static const iconWalletUsdtCoinSvg = 'assets/svgs/main/icon_wallet_usdt_coin.svg';
   static const iconWalletNewsTimeSvg = 'assets/svgs/main/icon_wallet_news_time.svg';
-  static const iconCommonDotLineSvg = 'assets/svgs/common/icon_common_dot_line.svg';
-  static const iconCommonCircleSvg = 'assets/svgs/common/icon_common_circle.svg';
   /* --------- wallet ------------*/
 }

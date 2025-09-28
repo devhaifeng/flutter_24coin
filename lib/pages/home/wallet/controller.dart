@@ -131,11 +131,26 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
     BaseListResponse<CoinAllowData> model = await WalletApi.getAllowedCoinList();
     allowedCoinList?.addAll(model.data ?? []);
     allowedCoinList?.removeWhere((element) => element.value == -1);
+    allowedCoinList?.add(CoinAllowData(value: 2, appDisplay: 'USDT(ERC20)', isSelected: false));
+    allowedCoinList?.add(CoinAllowData(value: 4, appDisplay: '48Coin', isSelected: false));
     allowedCoinList?.forEach((element) {
-      if (element.value == 3) {
-        element.isSelected = true;
-      } else {
-        element.isSelected = false;
+      switch (element.value) {
+        case 1:
+          element.isSelected = false;
+          element.assetsPath = AssetsSvgs.iconWalletTrcCoinSvg;
+          break;
+        case 2:
+          element.isSelected = false;
+          element.assetsPath = AssetsSvgs.iconWalletErcCoinSvg;
+          break;
+        case 3:
+          element.isSelected = true;
+          element.assetsPath = AssetsImages.iconWalletCoinPng;
+          break;
+        case 4:
+          element.isSelected = false;
+          element.assetsPath = AssetsImages.iconWalletCoin2Png;
+          break;
       }
     });
 

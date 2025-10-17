@@ -9,11 +9,17 @@ class CoinNewsFormat {
   DateTime get date => DateTime.fromMillisecondsSinceEpoch(timestamp!);
   CoinNewsFormat({this.datum, this.timestamp});
 
-  Map<String, dynamic> toJson() => {'datum': datum?.toJson(), 'timestamp': timestamp};
+  Map<String, dynamic> toJson() => {
+    'datum': datum?.toJson(),
+    'timestamp': timestamp,
+  };
 
   factory CoinNewsFormat.fromJson(Map<String, dynamic> json) {
     return CoinNewsFormat(
-      datum: json['datum'] == null ? null : Datum.fromJson(json['datum'] as Map<String, dynamic>),
+      datum:
+          json['datum'] == null
+              ? null
+              : Datum.fromJson(json['datum'] as Map<String, dynamic>),
       timestamp: json['timestamp'] as int?,
     );
   }
@@ -25,12 +31,18 @@ class CoinNewsListData {
 
   CoinNewsListData({this.date, this.data});
 
-  Map<String, dynamic> toJson() => {'date': date, 'data': data?.map((e) => e.toJson()).toList()};
+  Map<String, dynamic> toJson() => {
+    'date': date,
+    'data': data?.map((e) => e.toJson()).toList(),
+  };
 
   factory CoinNewsListData.fromJson(Map<String, dynamic> json) {
     return CoinNewsListData(
       date: json['date'] as String?,
-      data: (json['data'] as List<dynamic>?)?.map((e) => Datum.fromJson(e as Map<String, dynamic>)).toList(),
+      data:
+          (json['data'] as List<dynamic>?)
+              ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
   }
 }

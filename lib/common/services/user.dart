@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_24coin/common/index.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +38,11 @@ class UserService extends GetxService {
   ///获取用户密码
   String getPassword() {
     return Storage().getString(SPConstants.storagePassword);
+  }
+
+  String? getToken() {
+    token = Storage().getString(SPConstants.storageToken);
+    return token;
   }
 
   /// 设置令牌

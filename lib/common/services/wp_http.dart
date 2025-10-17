@@ -60,7 +60,8 @@ class RequestInterceptors extends Interceptor {
   // 退出并重新登录
   Future<void> _errorNoAuthLogout() async {
     //await UserService.to.logout();
-    Get.toNamed(RouteNames.systemLogin);
+    UserService.to.setToken('');
+    Get.offAllNamed(RouteNames.systemSplash);
   }
 
   /// 请求拦截

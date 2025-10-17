@@ -4,7 +4,15 @@ import 'package:flutter/material.dart';
 import '../index.dart';
 
 /// 按钮样式
-enum ButtonWidgetVariant { primary, secondary, destructive, outline, ghost, link, icon }
+enum ButtonWidgetVariant {
+  primary,
+  secondary,
+  destructive,
+  outline,
+  ghost,
+  link,
+  icon,
+}
 
 /// 按钮
 class ButtonWidget extends StatefulWidget {
@@ -399,7 +407,9 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       case ButtonWidgetVariant.icon:
         return null;
       case ButtonWidgetVariant.outline:
-        return BorderRadius.circular(widget.borderRadius ?? _size(AppRadius.button));
+        return BorderRadius.circular(
+          widget.borderRadius ?? _size(AppRadius.button),
+        );
       default:
     }
     return null;
@@ -415,7 +425,10 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       case ButtonWidgetVariant.icon:
         return null;
       case ButtonWidgetVariant.outline:
-        return Border.all(color: widget.borderColor ?? context.colors.scheme.outline, width: AppBorder.button);
+        return Border.all(
+          color: widget.borderColor ?? context.colors.scheme.outline,
+          width: AppBorder.button,
+        );
       default:
     }
     return null;
@@ -446,7 +459,13 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     }
     if (widget.text?.isNotEmpty == true) {
       ws.add(
-        TextWidget.label(size: 15, widget.text!, color: _textColor(), scale: widget.scale, textAlign: TextAlign.center),
+        TextWidget.label(
+          size: 15,
+          widget.text!,
+          color: _textColor(),
+          scale: widget.scale,
+          textAlign: TextAlign.center,
+        ),
       );
     }
 
@@ -477,26 +496,38 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             ? ws[0]
             : ws.toRowSpace(
               space: widget.iconSpace ?? _size(AppSpace.iconText),
-              mainAxisAlignment: widget.mainAxisAlignment ?? MainAxisAlignment.center,
+              mainAxisAlignment:
+                  widget.mainAxisAlignment ?? MainAxisAlignment.center,
               mainAxisSize: widget.mainAxisSize ?? MainAxisSize.min,
             );
 
     // 约束, 不设置组件默认紧包裹
     if (widget._width != null || widget._height != null) {
-      child = child.alignment(Alignment.center).constrained(width: widget._width, height: widget._height);
+      child = child
+          .alignment(Alignment.center)
+          .constrained(width: widget._width, height: widget._height);
     }
 
     // 涟漪效果
-    child = child.ripple(enable: _ripple(enabled), highlightColor: _highlightColor());
+    child = child.ripple(
+      enable: _ripple(enabled),
+      highlightColor: _highlightColor(),
+    );
 
     // 背景、边框
     if (widget.variant != ButtonWidgetVariant.icon) {
-      child = child.decorated(color: _backgroundColor(), borderRadius: _borderRadius(), border: _border());
+      child = child.decorated(
+        color: _backgroundColor(),
+        borderRadius: _borderRadius(),
+        border: _border(),
+      );
     }
 
     // 裁切圆角
     if (widget.borderRadius == null || widget.borderRadius! > 0) {
-      child = child.clipRRect(all: _size(widget.borderRadius ?? AppRadius.button));
+      child = child.clipRRect(
+        all: _size(widget.borderRadius ?? AppRadius.button),
+      );
     }
 
     // 阴影
@@ -510,7 +541,10 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     // 事件、透明度、缩放
     child = child
         .gestures(
-          onTapChange: enabled ? (tapStatus) => setState(() => pressed = tapStatus) : null,
+          onTapChange:
+              enabled
+                  ? (tapStatus) => setState(() => pressed = tapStatus)
+                  : null,
           onTap:
               enabled
                   ? () {

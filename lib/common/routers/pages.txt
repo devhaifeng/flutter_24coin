@@ -1,21 +1,13 @@
 
       GetPage(
-        name: RouteNames.systemLogin,
-        page: () => const LoginPage(),
+        name: RouteNames.homeWallet,
+        page: () => const WalletPage(),
       ),
       GetPage(
-        name: RouteNames.systemMain,
-        page: () => const MainPage(),
+        name: RouteNames.homeWalletWalletUsdtReceive,
+        page: () => const WalletUsdtReceivePage(),
       ),
       GetPage(
-        name: RouteNames.systemRegister,
-        page: () => const RegisterPage(),
-      ),
-      GetPage(
-        name: RouteNames.systemSplash,
-        page: () => const SplashPage(),
-      ),
-      GetPage(
-        name: RouteNames.systemWelcome,
-        page: () => const WelcomePage(),
+        name: RouteNames.homeWalletWalletUsdtSend,
+        page: () => const WalletUsdtSendPage(),
       ),

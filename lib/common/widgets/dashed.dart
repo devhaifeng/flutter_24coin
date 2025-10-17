@@ -33,7 +33,10 @@ class DashedLine extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(density, (int index) {
           return DecoratedBox(
-            decoration: BoxDecoration(color: dashedColor, borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+              color: dashedColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: SizedBox(width: dashedWidth, height: dashedHeight),
           );
         }),

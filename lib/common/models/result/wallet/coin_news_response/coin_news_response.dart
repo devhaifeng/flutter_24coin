@@ -9,11 +9,18 @@ class CoinNewsResponse {
 
   factory CoinNewsResponse.fromJson(Map<String, dynamic> json) {
     return CoinNewsResponse(
-      data: json['data'] == null ? null : Data.fromJson(json['data'] as Map<String, dynamic>),
+      data:
+          json['data'] == null
+              ? null
+              : Data.fromJson(json['data'] as Map<String, dynamic>),
       msg: json['msg'] as String?,
       code: json['code'] as int?,
     );
   }
 
-  Map<String, dynamic> toJson() => {'data': data?.toJson(), 'msg': msg, 'code': code};
+  Map<String, dynamic> toJson() => {
+    'data': data?.toJson(),
+    'msg': msg,
+    'code': code,
+  };
 }

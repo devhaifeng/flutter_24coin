@@ -20,8 +20,7 @@ class Reguix {
       return true;
     }
     // 判断是否为浮点数（正浮点数）
-    if (RegExp(r'^[1-9]\d*\.\d+$').hasMatch(input) ||
-        RegExp(r'^0\.\d*[1-9]\d*$').hasMatch(input)) {
+    if (RegExp(r'^[1-9]\d*\.\d+$').hasMatch(input) || RegExp(r'^0\.\d*[1-9]\d*$').hasMatch(input)) {
       return true;
     }
     return false;
@@ -52,4 +51,17 @@ class Reguix {
     // 默认情况：保留两位小数
     return value.toStringAsFixed(2);
   }
+}
+
+String formatNumber(num number) {
+  // 首先固定为两位小数，它会进行四舍五入[4](@ref)
+  String result = number.toStringAsFixed(2);
+  // 检查小数部分是否为 ".00"
+  if (result.endsWith('.00')) {
+    return result.split('.')[0]; // 返回整数部分
+  } else if (result.endsWith('0')) {
+    // 如果只有一位小数且是0，例如 "9.50" 变为 "9.5"
+    return result.substring(0, result.length - 1);
+  }
+  return result;
 }

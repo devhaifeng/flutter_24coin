@@ -26,7 +26,10 @@ class WebSocketService {
     try {
       _channel = IOWebSocketChannel.connect(
         _url,
-        headers: {'Authorization': 'token: ${Constants.wsToken}', 'User-Agent': 'FlutterWebSocketClient'},
+        headers: {
+          'Authorization': 'token: ${Constants.wsToken}',
+          'User-Agent': 'FlutterWebSocketClient',
+        },
       );
       _subscription = _channel!.stream.listen(
         (message) {

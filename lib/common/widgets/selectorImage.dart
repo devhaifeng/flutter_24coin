@@ -8,12 +8,7 @@ class SvgSelector extends StatefulWidget {
   /// 点击事件
   final GestureTapCallback? onTap;
 
-  const SvgSelector({
-    super.key,
-    required this.normalSvg,
-    required this.pressedSvg,
-    required this.onTap,
-  });
+  const SvgSelector({super.key, required this.normalSvg, required this.pressedSvg, required this.onTap});
 
   @override
   _SvgSelectorState createState() => _SvgSelectorState();
@@ -29,11 +24,7 @@ class _SvgSelectorState extends State<SvgSelector> {
       onTapUp: (details) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
       onTap: widget.onTap,
-      child: SvgPicture.asset(
-        _isPressed ? widget.pressedSvg : widget.normalSvg,
-        width: 28,
-        height: 28,
-      ),
+      child: SvgPicture.asset(_isPressed ? widget.pressedSvg : widget.normalSvg, width: 28, height: 28),
     );
   }
 }

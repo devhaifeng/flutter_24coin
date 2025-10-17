@@ -41,13 +41,19 @@ class CoinTypePopView extends StatelessWidget {
         // 扩展
         isExpanded: true,
         // 提示组件
-        hint: Row(children: [Expanded(child: TextWidget.label(hintText ?? 'Select Item'))]),
+        hint: Row(
+          children: [
+            Expanded(child: TextWidget.label(hintText ?? 'Select Item')),
+          ],
+        ),
         // 下拉项列表
         items:
             items
                 ?.map(
-                  (item) =>
-                      DropdownMenuItem<CoinAllowData>(value: item, child: TextWidget.label(item.appDisplay ?? "")),
+                  (item) => DropdownMenuItem<CoinAllowData>(
+                    value: item,
+                    child: TextWidget.label(item.appDisplay ?? ""),
+                  ),
                 )
                 .toList(),
         // 选中项

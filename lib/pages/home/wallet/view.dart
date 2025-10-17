@@ -33,41 +33,124 @@ class _WalletViewGetX extends GetView<WalletController> {
       width: double.infinity,
       child: Center(
         child: <Widget>[
-          TextWidget.label("4500", size: 40, color: Get.isDarkMode ? Colors.white : Colors.black),
-          TextWidget.label("EJD65K69N9…D204LDLJSU", size: 14, color: AppTheme.commonTextColorSecondery),
+          TextWidget.label(
+            controller.walletIndexData?.balance != null
+                ? formatNumber(controller.walletIndexData!.balance! / 100)
+                : "0",
+            size: 40,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
+          ),
+          TextWidget.label(
+            controller.walletIndexData?.address ?? "",
+            size: 14,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            color: AppTheme.commonTextColorSecondery,
+          ).width(200),
           SizedBox(height: 16),
           <Widget>[
             <Widget>[
-              ImageWidget.svg(
-                Get.isDarkMode ? AssetsSvgs.iconWalletTransferDarkSvg : AssetsSvgs.iconWalletTransferSvg,
-                width: 40,
-                height: 40,
-              ),
-              TextWidget.label("发送", size: 14, color: Get.isDarkMode ? Colors.white : Colors.black),
-            ].toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
+                  ImageWidget.svg(
+                    controller.walletIndexData?.type == 3 || controller.walletIndexData?.type == 4
+                        ? Get.isDarkMode
+                            ? AssetsSvgs.iconWalletTransferUnableDarkSvg
+                            : AssetsSvgs.iconWalletTransferUnableSvg
+                        : Get.isDarkMode
+                        ? AssetsSvgs.iconWalletTransferDarkSvg
+                        : AssetsSvgs.iconWalletTransferSvg,
+                    width: 40,
+                    height: 40,
+                  ),
+                  TextWidget.label(
+                    LocaleKeys.walletSend.tr,
+                    size: 14,
+                    color:
+                        controller.walletIndexData?.type == 3 || controller.walletIndexData?.type == 4
+                            ? AppTheme.info
+                            : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
+                  ),
+                ]
+                .toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center)
+                .onTap(() {
+                  if (controller.walletIndexData?.type == 1 || controller.walletIndexData?.type == 2) {
+                    Get.toNamed(
+                      RouteNames.homeWalletWalletUsdtSend,
+                      arguments: {"coinType": controller.walletIndexData?.type},
+                    );
+                  }
+                }),
             <Widget>[
-              ImageWidget.svg(
-                Get.isDarkMode ? AssetsSvgs.iconWalletAcceptEnableDarkSvg : AssetsSvgs.iconWalletAcceptEnableSvg,
-                width: 40,
-                height: 40,
-              ),
-              TextWidget.label("接收", size: 14, color: Get.isDarkMode ? Colors.white : Colors.black),
-            ].toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
+                  ImageWidget.svg(
+                    controller.walletIndexData?.type == 3 || controller.walletIndexData?.type == 4
+                        ? Get.isDarkMode
+                            ? AssetsSvgs.iconWalletAcceptUnableDarkSvg
+                            : AssetsSvgs.iconWalletAcceptUnableSvg
+                        : Get.isDarkMode
+                        ? AssetsSvgs.iconWalletAcceptEnableDarkSvg
+                        : AssetsSvgs.iconWalletAcceptEnableSvg,
+                    width: 40,
+                    height: 40,
+                  ),
+                  TextWidget.label(
+                    LocaleKeys.walletReceive.tr,
+                    size: 14,
+                    color:
+                        controller.walletIndexData?.type == 3 || controller.walletIndexData?.type == 4
+                            ? AppTheme.info
+                            : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
+                  ),
+                ]
+                .toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center)
+                .onTap(() {
+                  if (controller.walletIndexData?.type == 1 || controller.walletIndexData?.type == 2) {
+                    Get.toNamed(
+                      RouteNames.homeWalletWalletUsdtReceive,
+                      arguments: {"coinType": controller.walletIndexData?.type},
+                    );
+                  }
+                }),
             <Widget>[
               ImageWidget.svg(
                 Get.isDarkMode ? AssetsSvgs.iconWalletExchangeEnableDarkSvg : AssetsSvgs.iconWalletExchangeEnableSvg,
                 width: 40,
                 height: 40,
               ),
-              TextWidget.label("兑换", size: 14, color: Get.isDarkMode ? Colors.white : Colors.black),
+              TextWidget.label(
+                LocaleKeys.walletExchange.tr,
+                size: 14,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
+              ),
             ].toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
             <Widget>[
               ImageWidget.svg(
-                Get.isDarkMode ? AssetsSvgs.iconWalletSellEnableDarkSvg : AssetsSvgs.iconWalletSellEnableSvg,
+                controller.walletIndexData?.type == 3
+                    ? Get.isDarkMode
+                        ? AssetsSvgs.iconWalletSellEnableDarkSvg
+                        : AssetsSvgs.iconWalletSellEnableSvg
+                    : controller.walletIndexData?.type == 4
+                    ? Get.isDarkMode
+                        ? AssetsSvgs.iconWalletScanUnableDarkSvg
+                        : AssetsSvgs.iconWalletScanUnableSvg
+                    : Get.isDarkMode
+                    ? AssetsSvgs.iconWalletScanEnableDarkSvg
+                    : AssetsSvgs.iconWalletScanEnableSvg,
                 width: 40,
                 height: 40,
               ),
-              TextWidget.label("出售", size: 14, color: Get.isDarkMode ? Colors.white : Colors.black),
+              TextWidget.label(
+                controller.walletIndexData?.type == 3 ? LocaleKeys.walletSell.tr : LocaleKeys.walletScan.tr,
+                size: 14,
+                color:
+                    controller.walletIndexData?.type == 4
+                        ? AppTheme.info
+                        : Get.isDarkMode
+                        ? Colors.white
+                        : Colors.black,
+              ),
             ].toColumnSpace(space: 8, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
           ].toRow(mainAxisAlignment: MainAxisAlignment.spaceBetween),
         ].toColumn(mainAxisSize: MainAxisSize.min).padding(left: 55, right: 55),
@@ -113,7 +196,7 @@ class _WalletViewGetX extends GetView<WalletController> {
               color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
             TextWidget.label(
-              "可进行任意交易买卖/转账",
+              LocaleKeys.wallet24CoinHint.tr,
               size: 12,
               color: AppTheme.commonTextColorSecondery,
               weight: FontWeight.w400,
@@ -121,7 +204,7 @@ class _WalletViewGetX extends GetView<WalletController> {
           ].toColumn(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start).paddingLeft(13),
           Spacer(),
           TextWidget.label(
-            "4500",
+            controller.mCoinBalanceData?.balance?.toString() ?? "0",
             size: 14,
             weight: FontWeight.w400,
             color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -150,7 +233,7 @@ class _WalletViewGetX extends GetView<WalletController> {
               color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
             TextWidget.label(
-              "交易购买所得，只允许转账",
+              LocaleKeys.wallet48CoinHint.tr,
               size: 12,
               color: AppTheme.commonTextColorSecondery,
               weight: FontWeight.w400,
@@ -158,7 +241,7 @@ class _WalletViewGetX extends GetView<WalletController> {
           ].toColumn(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start).paddingLeft(13),
           Spacer(),
           TextWidget.label(
-            "4500",
+            controller.mCoinBalanceData?.betBalance?.toString() ?? "0",
             size: 14,
             weight: FontWeight.w400,
             color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -189,11 +272,16 @@ class _WalletViewGetX extends GetView<WalletController> {
               weight: FontWeight.w400,
               color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
-            TextWidget.label("可进行任何转账", size: 12, color: AppTheme.commonTextColorSecondery, weight: FontWeight.w400),
+            TextWidget.label(
+              LocaleKeys.walletUsdtHint.tr,
+              size: 12,
+              color: AppTheme.commonTextColorSecondery,
+              weight: FontWeight.w400,
+            ),
           ].toColumn(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start).paddingLeft(13),
           Spacer(),
           TextWidget.label(
-            "730",
+            controller.mCoinBalanceData?.usdt?.toString() ?? "0",
             size: 14,
             weight: FontWeight.w400,
             color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -205,311 +293,372 @@ class _WalletViewGetX extends GetView<WalletController> {
 
   // 主视图
   Widget _buildView(BuildContext context) {
-    CoinAllowData? checkItem = controller.allowedCoinList?.firstWhere((element) => element.isSelected!);
-    var commonDivideColor = Get.isDarkMode ? Color(0xFF2B3843) : Color(0xFFF5F5F5);
-    return <Widget>[
-      DropdownButtonHideUnderline(
-        child: DropdownButton2<CoinAllowData>(
-          menuItemStyleData: MenuItemStyleData(
-            overlayColor: WidgetStateProperty.all(Colors.transparent),
-            height: 35,
-            padding: EdgeInsets.only(left: 15, right: 15),
-          ),
-          // 按钮样式
-          customButton: Container(
-            width: double.infinity,
-            color: Theme.of(context).colorScheme.surfaceContainer,
-            height: 50,
-            child: Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(17),
-                ),
-                child: <Widget>[
-                      checkItem?.value == 1 || checkItem?.value == 2
-                          ? ImageWidget.svg(checkItem?.assetsPath ?? "", width: 18, height: 18)
-                          : ImageWidget.img(checkItem?.assetsPath ?? "", width: 18, height: 18),
-
-                      SizedBox(width: 6),
-                      TextWidget.label(checkItem!.appDisplay!, size: 15, weight: FontWeight.w400),
-                      SizedBox(width: 2),
-                      IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
-                    ]
-                    .toRow(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                    )
-                    .paddingHorizontal(10)
-                    .height(34),
-              ),
+    if (controller.allowedCoinList?.isNotEmpty == true) {
+      CoinAllowData? checkItem = controller.allowedCoinList?.firstWhere(
+        (element) => element.isSelected!,
+        orElse:
+            () => CoinAllowData(
+              value: 3,
+              appDisplay: "24Coin",
+              assetsPath: AssetsImages.iconWalletCoinPng,
+              isSelected: true,
+            ), // 或者返回一个默认的占位对象，例如 WalletItem.empty()
+      );
+      var commonDivideColor = Get.isDarkMode ? Color(0xFF2B3843) : Color(0xFFF5F5F5);
+      return <Widget>[
+        DropdownButtonHideUnderline(
+          child: DropdownButton2<CoinAllowData>(
+            menuItemStyleData: MenuItemStyleData(
+              overlayColor: WidgetStateProperty.all(Colors.transparent),
+              height: 35,
+              padding: EdgeInsets.only(left: 15, right: 15),
             ),
-          ),
-          dropdownStyleData: DropdownStyleData(
-            width: 175,
-            padding: EdgeInsets.symmetric(vertical: 0),
-            decoration: BoxDecoration(
+            // 按钮样式
+            customButton: Container(
+              width: double.infinity,
               color: Theme.of(context).colorScheme.surfaceContainer,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            elevation: 0,
-            offset: Offset(MediaQuery.of(context).size.width / 2 - 175 / 2, 0),
-            scrollbarTheme: ScrollbarThemeData(
-              radius: Radius.circular(15),
-              thickness: WidgetStateProperty.all(0),
-              thumbColor: WidgetStateProperty.all(Colors.grey.shade400),
-            ),
-          ),
-          // 扩展
-          isExpanded: false,
+              height: 50,
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(17),
+                  ),
+                  child: <Widget>[
+                        checkItem?.value == 1 || checkItem?.value == 2
+                            ? ImageWidget.svg(checkItem?.assetsPath ?? "", width: 18, height: 18)
+                            : ImageWidget.img(checkItem?.assetsPath ?? "", width: 18, height: 18),
 
-          // 提示组件
-          // 下拉项列表
-          items:
-              controller.allowedCoinList
-                  ?.map(
-                    (item) => DropdownMenuItem<CoinAllowData>(
-                      value: item,
-                      child:
-                          <Widget>[
-                            item.value == 1 || item.value == 2
-                                ? ImageWidget.svg(item.assetsPath ?? "", width: 18, height: 18)
-                                : ImageWidget.img(item.assetsPath ?? "", width: 18, height: 18),
-                            SizedBox(width: 7),
-                            TextWidget.label(
-                              item.appDisplay ?? "",
-                              color: item.isSelected! ? context.colors.scheme.onSurface : AppTheme.info,
-                            ),
-                            Expanded(
-                              // 占据剩余空间
-                              child: SizedBox(), // 使用一个空的SizedBox，或者你可以放置一个空的Container
-                            ),
-                            item.isSelected!
-                                ? ImageWidget.svg(AssetsSvgs.svgCommonTickSvg, width: 12, height: 9)
-                                : SizedBox(),
-                          ].toRow(),
-                    ),
-                  )
-                  .toList(),
-
-          // 选中项
-          value: controller.allowedCoinList?.firstWhere((element) => element.isSelected!),
-          // 改变事件
-          onChanged: controller.onSelectorCoinChanged,
-        ),
-      ),
-      Expanded(
-        child: NestedScrollView(
-          controller: controller.scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    _buildWalletBalance(context),
-                    SizedBox(height: 10),
-                    _buildCoinBalance(context),
-                    SizedBox(height: 10),
-                  ],
+                        SizedBox(width: 6),
+                        TextWidget.label(checkItem!.appDisplay!, size: 15, weight: FontWeight.w400),
+                        SizedBox(width: 2),
+                        IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
+                      ]
+                      .toRow(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      )
+                      .paddingHorizontal(10)
+                      .height(34),
                 ),
               ),
-              // TabBar
-              SliverPadding(
-                padding: EdgeInsets.only(left: 16, right: 16),
-                sliver: SliverPersistentHeader(
-                  pinned: false,
-                  floating: true,
-                  delegate: _StickyTabBarDelegate(
-                    child: TabBar(
-                      indicatorColor: Colors.transparent,
-                      overlayColor: WidgetStateProperty.all(Colors.transparent),
-                      splashFactory: NoSplash.splashFactory, // 关闭水波纹效果
-                      dividerHeight: 0.5,
-                      dividerColor: Get.isDarkMode ? Color(0xFF28343F) : Color(0xFFEEEEEE),
-                      labelColor: AppTheme.primary,
-                      unselectedLabelColor: AppTheme.commonTextColorSecondery,
-                      controller: controller.tabController,
-                      labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
-                      tabs: const [
-                        Tab(text: "热门"),
-                        Tab(text: "涨幅榜"),
-                        Tab(text: "跌幅榜"),
-                        Tab(text: "成交榜"),
-                        Tab(text: "资讯"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ];
-          },
-          body: TabBarView(
-                controller: controller.tabController,
-                children: [
-                  ListView.separated(
-                    physics: ClampingScrollPhysics(),
-                    itemCount: controller.hotList?.length ?? 0,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return index != 0
-                          ? Divider(
-                            thickness: 1,
-                            height: 0,
-                            color: commonDivideColor,
-                          ).marginSymmetric(horizontal: 16, vertical: 0)
-                          : Divider(height: 0, color: Colors.transparent);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      final coinItem = controller.hotList?[index];
-                      if (index == 0) {
-                        return Row(
-                          children: [
-                            TextWidget.label("币种", size: 10, color: AppTheme.commonTextColorSecondery),
-                            Spacer(),
-                            TextWidget.label("最新价", size: 10, color: AppTheme.commonTextColorSecondery),
-                            SizedBox(width: 60),
-                            TextWidget.label("24涨跌幅", size: 10, color: AppTheme.commonTextColorSecondery),
-                          ],
-                        ).marginOnly(left: 16, top: 10, right: 16);
-                      } else {
-                        return CoinItemWidget(
-                          coinName: coinItem?.S,
-                          logoUrl: coinItem?.logoUrl,
-                          newPrice: coinItem!.u.toString(),
-                          rightText:
-                              Reguix.isPositiveNumber(coinItem.c.toString())
-                                  ? "+${coinItem.c?.toStringAsFixed(2)}%"
-                                  : "${coinItem.c?.toStringAsFixed(2)}%",
-                          rightColor:
-                              Reguix.isPositiveNumber(coinItem.c.toString()) ? Color(0xff13BD57) : Color(0xffF25644),
-                        );
-                      }
-                    },
-                  ),
-                  ListView.separated(
-                    physics: ClampingScrollPhysics(),
-                    itemCount: controller.irateList?.length ?? 0,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return index != 0
-                          ? Divider(
-                            thickness: 1,
-                            height: 0,
-                            color: commonDivideColor,
-                          ).marginSymmetric(horizontal: 16, vertical: 0)
-                          : Divider(height: 0, color: Colors.transparent);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      final irateItem = controller.irateList?[index];
-                      if (index == 0) {
-                        return Row(
-                          children: [
-                            TextWidget.label("币种", size: 10, color: AppTheme.commonTextColorSecondery),
-                            Spacer(),
-                            TextWidget.label("最新价", size: 10, color: AppTheme.commonTextColorSecondery),
-                            SizedBox(width: 60),
-                            TextWidget.label("24h涨幅", size: 10, color: AppTheme.commonTextColorSecondery),
-                          ],
-                        ).marginOnly(left: 16, top: 10, right: 16);
-                      } else {
-                        return CoinItemWidget(
-                          coinName: irateItem?.S,
-                          logoUrl: irateItem?.logoUrl,
-                          newPrice: irateItem?.v.toString(),
-                          rightText:
-                              Reguix.isPositiveNumber(irateItem!.c.toString())
-                                  ? "+${irateItem.c?.toStringAsFixed(2)}%"
-                                  : "${irateItem.c?.toStringAsFixed(2)}%",
-                          rightColor: AppTheme.success,
-                        );
-                      }
-                    },
-                  ),
-                  ListView.separated(
-                    physics: ClampingScrollPhysics(),
-                    itemCount: controller.drateList?.length ?? 0,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return index != 0
-                          ? Divider(
-                            thickness: 1,
-                            height: 0,
-                            color: commonDivideColor,
-                          ).marginSymmetric(horizontal: 16, vertical: 0)
-                          : Divider(height: 0, color: Colors.transparent);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      final coinItem = controller.drateList?[index];
-                      if (index == 0) {
-                        return Row(
-                          children: [
-                            TextWidget.label("币种", size: 10, color: AppTheme.commonTextColorSecondery),
-                            Spacer(),
-                            TextWidget.label("最新价", size: 10, color: AppTheme.commonTextColorSecondery),
-                            SizedBox(width: 60),
-                            TextWidget.label("24h跌幅", size: 10, color: AppTheme.commonTextColorSecondery),
-                          ],
-                        ).marginOnly(left: 16, top: 10, right: 16);
-                      } else {
-                        return CoinItemWidget(
-                          coinName: coinItem?.S,
-                          logoUrl: coinItem?.logoUrl,
-                          newPrice: coinItem?.u.toString(),
-                          rightText:
-                              Reguix.isPositiveNumber(coinItem!.c.toString())
-                                  ? "+${coinItem.c?.toStringAsFixed(2)}%"
-                                  : "${coinItem.c?.toStringAsFixed(2)}%",
-                          rightColor: AppTheme.error,
-                        );
-                      }
-                    },
-                  ),
-                  ListView.separated(
-                    physics: ClampingScrollPhysics(),
-                    itemCount: controller.dealList?.length ?? 0,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return index != 0
-                          ? Divider(
-                            thickness: 1,
-                            height: 0,
-                            color: commonDivideColor,
-                          ).marginSymmetric(horizontal: 16, vertical: 0)
-                          : Divider(height: 0, color: Colors.transparent);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      final coinItem = controller.dealList?[index];
-                      if (index == 0) {
-                        return Row(
-                          children: [
-                            TextWidget.label("币种", size: 10, color: AppTheme.commonTextColorSecondery),
-                            Spacer(),
-                            TextWidget.label("最新价", size: 10, color: AppTheme.commonTextColorSecondery),
-                            SizedBox(width: 60),
-                            TextWidget.label("24h成交量", size: 10, color: AppTheme.commonTextColorSecondery),
-                          ],
-                        ).marginOnly(left: 16, top: 10, right: 16);
-                      } else {
-                        return CoinItemWidget(
-                          coinName: coinItem?.S,
-                          logoUrl: coinItem?.logoUrl,
-                          newPrice: coinItem?.u.toString(),
-                          rightText: Reguix.formatNumberWithUnit(coinItem!.v!),
-                          rightColor: Get.isDarkMode ? Colors.white : Colors.black,
-                        );
-                      }
-                    },
-                  ),
-
-                  /// 资讯
-                  CustomScrollView(physics: ClampingScrollPhysics(), slivers: buildAllNewsSlivers()),
-                ],
-              )
-              .decorated(
+            ),
+            dropdownStyleData: DropdownStyleData(
+              width: 175,
+              padding: EdgeInsets.symmetric(vertical: 0),
+              decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceContainer,
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
-              )
-              .paddingHorizontal(16),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              elevation: 0,
+              offset: Offset(MediaQuery.of(context).size.width / 2 - 175 / 2, 0),
+              scrollbarTheme: ScrollbarThemeData(
+                radius: Radius.circular(15),
+                thickness: WidgetStateProperty.all(0),
+                thumbColor: WidgetStateProperty.all(Colors.grey.shade400),
+              ),
+            ),
+            // 扩展
+            isExpanded: false,
+
+            // 提示组件
+            // 下拉项列表
+            items:
+                controller.allowedCoinList
+                    ?.map(
+                      (item) => DropdownMenuItem<CoinAllowData>(
+                        value: item,
+                        child:
+                            <Widget>[
+                              item.value == 1 || item.value == 2
+                                  ? ImageWidget.svg(item.assetsPath ?? "", width: 18, height: 18)
+                                  : ImageWidget.img(item.assetsPath ?? "", width: 18, height: 18),
+                              SizedBox(width: 7),
+                              TextWidget.label(
+                                item.appDisplay ?? "",
+                                color: item.isSelected! ? context.colors.scheme.onSurface : AppTheme.info,
+                              ),
+                              Expanded(
+                                // 占据剩余空间
+                                child: SizedBox(), // 使用一个空的SizedBox，或者你可以放置一个空的Container
+                              ),
+                              item.isSelected!
+                                  ? ImageWidget.svg(AssetsSvgs.svgCommonTickSvg, width: 12, height: 9)
+                                  : SizedBox(),
+                            ].toRow(),
+                      ),
+                    )
+                    .toList(),
+
+            // 选中项
+            value: controller.allowedCoinList?.firstWhere((element) => element.isSelected!),
+            // 改变事件
+            onChanged: controller.onSelectorCoinChanged,
+          ),
         ),
-      ),
-    ].toColumn();
+        Expanded(
+          child: NestedScrollView(
+            controller: controller.scrollController,
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      _buildWalletBalance(context),
+                      SizedBox(height: 10),
+                      _buildCoinBalance(context),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+                // TabBar
+                SliverPadding(
+                  padding: EdgeInsets.only(left: 16, right: 16),
+                  sliver: SliverPersistentHeader(
+                    pinned: false,
+                    floating: true,
+                    delegate: _StickyTabBarDelegate(
+                      child: TabBar(
+                        indicatorColor: Colors.transparent,
+                        overlayColor: WidgetStateProperty.all(Colors.transparent),
+                        splashFactory: NoSplash.splashFactory, // 关闭水波纹效果
+                        dividerHeight: 0.5,
+                        dividerColor: Get.isDarkMode ? Color(0xFF28343F) : Color(0xFFEEEEEE),
+                        labelColor: AppTheme.primary,
+                        unselectedLabelColor: AppTheme.commonTextColorSecondery,
+                        controller: controller.tabController,
+                        labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                        tabs: [
+                          Tab(text: LocaleKeys.walletTabHot.tr),
+                          Tab(text: LocaleKeys.walletTabGainer.tr),
+                          Tab(text: LocaleKeys.walletTabLoser.tr),
+                          Tab(text: LocaleKeys.walletTabTransaction.tr),
+                          Tab(text: LocaleKeys.walletTabInformation.tr),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: TabBarView(
+                  controller: controller.tabController,
+                  children: [
+                    ListView.separated(
+                      physics: ClampingScrollPhysics(),
+                      itemCount: controller.hotList?.length ?? 0,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return index != 0
+                            ? Divider(
+                              thickness: 1,
+                              height: 0,
+                              color: commonDivideColor,
+                            ).marginSymmetric(horizontal: 16, vertical: 0)
+                            : Divider(height: 0, color: Colors.transparent);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final coinItem = controller.hotList?[index];
+                        if (index == 0) {
+                          return Row(
+                            children: [
+                              TextWidget.label(
+                                LocaleKeys.walletTabCoinType.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              Spacer(),
+                              TextWidget.label(
+                                LocaleKeys.walletTabNewPrice.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              SizedBox(width: 60),
+                              TextWidget.label(
+                                LocaleKeys.walletTabDayGainerLoser.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                            ],
+                          ).marginOnly(left: 16, top: 10, right: 16);
+                        } else {
+                          return CoinItemWidget(
+                            coinName: coinItem?.S,
+                            logoUrl: coinItem?.logoUrl,
+                            newPrice: coinItem!.u.toString(),
+                            rightText:
+                                Reguix.isPositiveNumber(coinItem.c.toString())
+                                    ? "+${coinItem.c?.toStringAsFixed(2)}%"
+                                    : "${coinItem.c?.toStringAsFixed(2)}%",
+                            rightColor:
+                                Reguix.isPositiveNumber(coinItem.c.toString()) ? Color(0xff13BD57) : Color(0xffF25644),
+                          );
+                        }
+                      },
+                    ),
+                    ListView.separated(
+                      physics: ClampingScrollPhysics(),
+                      itemCount: controller.irateList?.length ?? 0,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return index != 0
+                            ? Divider(
+                              thickness: 1,
+                              height: 0,
+                              color: commonDivideColor,
+                            ).marginSymmetric(horizontal: 16, vertical: 0)
+                            : Divider(height: 0, color: Colors.transparent);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final irateItem = controller.irateList?[index];
+                        if (index == 0) {
+                          return Row(
+                            children: [
+                              TextWidget.label(
+                                LocaleKeys.walletTabCoinType.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              Spacer(),
+                              TextWidget.label(
+                                LocaleKeys.walletTabNewPrice.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              SizedBox(width: 60),
+                              TextWidget.label(
+                                LocaleKeys.walletTabDayGainer.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                            ],
+                          ).marginOnly(left: 16, top: 10, right: 16);
+                        } else {
+                          return CoinItemWidget(
+                            coinName: irateItem?.S,
+                            logoUrl: irateItem?.logoUrl,
+                            newPrice: irateItem?.v.toString(),
+                            rightText:
+                                Reguix.isPositiveNumber(irateItem!.c.toString())
+                                    ? "+${irateItem.c?.toStringAsFixed(2)}%"
+                                    : "${irateItem.c?.toStringAsFixed(2)}%",
+                            rightColor: AppTheme.success,
+                          );
+                        }
+                      },
+                    ),
+                    ListView.separated(
+                      physics: ClampingScrollPhysics(),
+                      itemCount: controller.drateList?.length ?? 0,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return index != 0
+                            ? Divider(
+                              thickness: 1,
+                              height: 0,
+                              color: commonDivideColor,
+                            ).marginSymmetric(horizontal: 16, vertical: 0)
+                            : Divider(height: 0, color: Colors.transparent);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final coinItem = controller.drateList?[index];
+                        if (index == 0) {
+                          return Row(
+                            children: [
+                              TextWidget.label(
+                                LocaleKeys.walletTabCoinType.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              Spacer(),
+                              TextWidget.label(
+                                LocaleKeys.walletTabNewPrice.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              SizedBox(width: 60),
+                              TextWidget.label(
+                                LocaleKeys.walletTabDayLoser.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                            ],
+                          ).marginOnly(left: 16, top: 10, right: 16);
+                        } else {
+                          return CoinItemWidget(
+                            coinName: coinItem?.S,
+                            logoUrl: coinItem?.logoUrl,
+                            newPrice: coinItem?.u.toString(),
+                            rightText:
+                                Reguix.isPositiveNumber(coinItem!.c.toString())
+                                    ? "+${coinItem.c?.toStringAsFixed(2)}%"
+                                    : "${coinItem.c?.toStringAsFixed(2)}%",
+                            rightColor: AppTheme.error,
+                          );
+                        }
+                      },
+                    ),
+                    ListView.separated(
+                      physics: ClampingScrollPhysics(),
+                      itemCount: controller.dealList?.length ?? 0,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return index != 0
+                            ? Divider(
+                              thickness: 1,
+                              height: 0,
+                              color: commonDivideColor,
+                            ).marginSymmetric(horizontal: 16, vertical: 0)
+                            : Divider(height: 0, color: Colors.transparent);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final coinItem = controller.dealList?[index];
+                        if (index == 0) {
+                          return Row(
+                            children: [
+                              TextWidget.label(
+                                LocaleKeys.walletTabCoinType.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              Spacer(),
+                              TextWidget.label(
+                                LocaleKeys.walletTabNewPrice.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                              SizedBox(width: 60),
+                              TextWidget.label(
+                                LocaleKeys.walletTabDayVolume.tr,
+                                size: 10,
+                                color: AppTheme.commonTextColorSecondery,
+                              ),
+                            ],
+                          ).marginOnly(left: 16, top: 10, right: 16);
+                        } else {
+                          return CoinItemWidget(
+                            coinName: coinItem?.S,
+                            logoUrl: coinItem?.logoUrl,
+                            newPrice: coinItem?.u.toString(),
+                            rightText: Reguix.formatNumberWithUnit(coinItem!.v!),
+                            rightColor: Get.isDarkMode ? Colors.white : Colors.black,
+                          );
+                        }
+                      },
+                    ),
+
+                    /// 资讯
+                    CustomScrollView(physics: ClampingScrollPhysics(), slivers: buildAllNewsSlivers()),
+                  ],
+                )
+                .decorated(
+                  color: Theme.of(context).colorScheme.surfaceContainer,
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
+                )
+                .paddingHorizontal(16),
+          ),
+        ),
+      ].toColumn();
+    } else {
+      return SizedBox();
+    }
   }
 
   /// 构建所有新闻的 Slivers 列表

@@ -1,7 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_24coin/common/index.dart';
 import 'package:flutter_24coin/config/env.dart';
 import 'package:flutter_24coin/global.dart';

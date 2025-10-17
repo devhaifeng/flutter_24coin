@@ -110,7 +110,10 @@ class _ImageWidgetState extends State<ImageWidget> {
     Widget ws = widget.placeholder ?? const SizedBox();
 
     // 是否是网络图片
-    bool isNetwork = widget.path.startsWith('http') || widget.path.startsWith('https') || widget.path.startsWith('//');
+    bool isNetwork =
+        widget.path.startsWith('http') ||
+        widget.path.startsWith('https') ||
+        widget.path.startsWith('//');
 
     // 1 图片
 
@@ -151,8 +154,13 @@ class _ImageWidgetState extends State<ImageWidget> {
         // ),
         placeholder:
             (context, url) =>
-                widget.placeholder ?? const CircularProgressIndicator().tightSize(AppSize.indicator).center(),
-        errorWidget: (context, url, error) => widget.errorWidget ?? const Icon(Icons.error),
+                widget.placeholder ??
+                const CircularProgressIndicator()
+                    .tightSize(AppSize.indicator)
+                    .center(),
+        errorWidget:
+            (context, url, error) =>
+                widget.errorWidget ?? const Icon(Icons.error),
       );
     }
     //  svg asset 图片
@@ -160,11 +168,19 @@ class _ImageWidgetState extends State<ImageWidget> {
       ws = SvgPicture.asset(
         widget.path,
         fit: widget.fit ?? BoxFit.contain,
-        colorFilter: widget.color != null ? ColorFilter.mode(widget.color!, BlendMode.srcIn) : null,
+        colorFilter:
+            widget.color != null
+                ? ColorFilter.mode(widget.color!, BlendMode.srcIn)
+                : null,
         placeholderBuilder:
             (BuildContext context) =>
                 widget.placeholder ??
-                Center(child: const CircularProgressIndicator().tightSize(AppSize.indicator).center()),
+                Center(
+                  child:
+                      const CircularProgressIndicator()
+                          .tightSize(AppSize.indicator)
+                          .center(),
+                ),
       );
     }
     //  svg 网络图片
@@ -172,11 +188,19 @@ class _ImageWidgetState extends State<ImageWidget> {
       ws = SvgPicture.network(
         widget.path,
         fit: widget.fit ?? BoxFit.contain,
-        colorFilter: widget.color != null ? ColorFilter.mode(widget.color!, BlendMode.srcIn) : null,
+        colorFilter:
+            widget.color != null
+                ? ColorFilter.mode(widget.color!, BlendMode.srcIn)
+                : null,
         placeholderBuilder:
             (BuildContext context) =>
                 widget.placeholder ??
-                Center(child: const CircularProgressIndicator().tightSize(AppSize.indicator).center()),
+                Center(
+                  child:
+                      const CircularProgressIndicator()
+                          .tightSize(AppSize.indicator)
+                          .center(),
+                ),
       );
     }
     // svg raw
@@ -184,11 +208,19 @@ class _ImageWidgetState extends State<ImageWidget> {
       ws = SvgPicture.string(
         widget.path,
         fit: widget.fit ?? BoxFit.contain,
-        colorFilter: widget.color != null ? ColorFilter.mode(widget.color!, BlendMode.srcIn) : null,
+        colorFilter:
+            widget.color != null
+                ? ColorFilter.mode(widget.color!, BlendMode.srcIn)
+                : null,
         placeholderBuilder:
             (BuildContext context) =>
                 widget.placeholder ??
-                Center(child: const CircularProgressIndicator().tightSize(AppSize.indicator).center()),
+                Center(
+                  child:
+                      const CircularProgressIndicator()
+                          .tightSize(AppSize.indicator)
+                          .center(),
+                ),
       );
     }
 

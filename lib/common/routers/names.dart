@@ -12,4 +12,8 @@ class RouteNames {
   static const systemCountryCode = '/system_country_code';
   // 主页面
   static const systemMain = '/system_main';
+  // USDT发送
+  static const homeWalletWalletUsdtSend = '/home_wallet_wallet_usdt_send';
+  // USDT接收
+  static const homeWalletWalletUsdtReceive = '/home_wallet_wallet_usdt_receive';
 }

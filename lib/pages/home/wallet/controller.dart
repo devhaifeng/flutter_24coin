@@ -30,14 +30,14 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   List<ItemEntity>? dealList = [];
   List<CoinNewsListData>? coinNewsList = [];
   List<CoinAllowData>? allowedCoinList = [];
+  List<CoinWalletShow>? walletBalanceList = [];
+  CoinWalletIndexData? walletIndexData;
+  CoinBalanceData? mCoinBalanceData;
+  late int? lastCoinType = 3;
 
   ///资讯
   int startPage = -50;
   int endPage = -1;
-
-  _initData() {
-    update(["wallet"]);
-  }
 
   // 发送消息
   void sendMessage() {
@@ -49,7 +49,20 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
 
   @override
   void onInit() async {
-    allowedCoinList?.add(CoinAllowData(value: -1, appDisplay: '24Coin', isSelected: true));
+    String coinList = Storage().getString(SPConstants.storageCoinType);
+    print('本地存储的币种列表===>$coinList');
+    if (coinList.isEmpty) {
+      requestAllowedCoinList();
+    } else {
+      allowedCoinList =
+          (jsonDecode(Storage().getString(SPConstants.storageCoinType)) as List)
+              .map((e) => CoinAllowData.fromJson(e))
+              .toList();
+      lastCoinType = allowedCoinList!.firstWhere((element) => element.isSelected == true).value;
+      requestAllowedCoinList();
+      requestWallBalanceData();
+    }
+    requestCoinBalanceData();
     generatedUUID = uuid.v4().replaceAll('-', '');
     tabController = TabController(length: 5, vsync: this);
     initSocketService();
@@ -95,7 +108,7 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   }
 
   ///获取资讯信息
-  Future<void> requestCountryCode() async {
+  Future<void> requestCoinNews() async {
     CoinNewsResponse model = await WalletApi.getWalletNews(startPage, endPage);
     List<CoinNewsFormat> list = [];
     model.data?.data?.forEach((element) {
@@ -126,44 +139,58 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
     return groupedMap;
   }
 
+  Future<void> requestWallBalanceData() async {
+    int coinType = allowedCoinList?.firstWhere((element) => element.isSelected == true).value ?? 3;
+    BaseResponse<CoinWalletIndexData> response = await WalletApi.getHomeWalletData(coinType);
+    walletIndexData = response.data!;
+    update(["wallet"]);
+  }
+
+  Future<void> requestCoinBalanceData() async {
+    BaseResponse<CoinBalanceData> response = await WalletApi.getCoinBalanceList();
+    mCoinBalanceData = response.data;
+    print('余额数据===>${mCoinBalanceData?.toJson()}');
+    BaseListResponse<CoinWalletShow> coinWalletShow = await WalletApi.getWalletCoinShow();
+    walletBalanceList = coinWalletShow.data;
+    walletBalanceList?.forEach((element) {
+      print("展示币种 ${element.toJson()}");
+    });
+    update(["wallet"]);
+  }
+
   /// 获取允许的币种列表
-  Future<void> getAllowedCoinList() async {
+  Future<void> requestAllowedCoinList() async {
     BaseListResponse<CoinAllowData> model = await WalletApi.getAllowedCoinList();
+    allowedCoinList?.clear();
     allowedCoinList?.addAll(model.data ?? []);
-    allowedCoinList?.removeWhere((element) => element.value == -1);
-    allowedCoinList?.add(CoinAllowData(value: 2, appDisplay: 'USDT(ERC20)', isSelected: false));
-    allowedCoinList?.add(CoinAllowData(value: 4, appDisplay: '48Coin', isSelected: false));
     allowedCoinList?.forEach((element) {
       switch (element.value) {
         case 1:
-          element.isSelected = false;
+          element.isSelected = lastCoinType == 1;
           element.assetsPath = AssetsSvgs.iconWalletTrcCoinSvg;
           break;
         case 2:
-          element.isSelected = false;
+          element.isSelected = lastCoinType == 2;
           element.assetsPath = AssetsSvgs.iconWalletErcCoinSvg;
           break;
         case 3:
-          element.isSelected = true;
+          element.isSelected = lastCoinType == 3;
           element.assetsPath = AssetsImages.iconWalletCoinPng;
           break;
         case 4:
-          element.isSelected = false;
+          element.isSelected = lastCoinType == 4;
           element.assetsPath = AssetsImages.iconWalletCoin2Png;
           break;
       }
     });
-
-    // 处理 model 数据
-    update(["wallet"]);
+    Storage().setString(SPConstants.storageCoinType, jsonEncode(allowedCoinList));
+    requestWallBalanceData();
   }
 
   @override
   void onReady() {
     super.onReady();
-    _initData();
-    requestCountryCode();
-    getAllowedCoinList();
+    requestCoinNews();
   }
 
   @override
@@ -182,6 +209,8 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
           element.isSelected = true;
         }
       }
+      Storage().setString(SPConstants.storageCoinType, jsonEncode(allowedCoinList));
+      requestWallBalanceData();
       update(['wallet']);
     }
   }

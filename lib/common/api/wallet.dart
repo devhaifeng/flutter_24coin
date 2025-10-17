@@ -13,4 +13,23 @@ class WalletApi {
     final response = await WPHttpService.to.post('/dc/wallet/coin/list');
     return BaseListResponse<CoinAllowData>.fromJson(response.data, (data) => CoinAllowData.fromJson(data));
   }
+
+  ///首页钱包数据
+  static Future<BaseResponse<CoinWalletIndexData>> getHomeWalletData(int type) async {
+    CoinWalletIndexRequest request = CoinWalletIndexRequest(type: type);
+    final response = await WPHttpService.to.post('/dc/wallet/index', data: request);
+    return BaseResponse<CoinWalletIndexData>.fromJson(response.data, (data) => CoinWalletIndexData.fromJson(data));
+  }
+
+  ///获取币种余额
+  static Future<BaseResponse<CoinBalanceData>> getCoinBalanceList() async {
+    final response = await WPHttpService.to.post('/dc/wallet/get/balance/all');
+    return BaseResponse<CoinBalanceData>.fromJson(response.data, (data) => CoinBalanceData.fromJson(data));
+  }
+
+  ///获取当前用户展示的大类币种
+  static Future<BaseListResponse<CoinWalletShow>> getWalletCoinShow() async {
+    final response = await WPHttpService.to.post('/dc/wallet/get/coin/show');
+    return BaseListResponse<CoinWalletShow>.fromJson(response.data, (data) => CoinWalletShow.fromJson(data));
+  }
 }

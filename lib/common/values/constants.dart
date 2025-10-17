@@ -42,4 +42,7 @@ class SPConstants {
 
   ///保存手机号
   static const phoneNumber = 'phoneNumber';
+
+  ///币种类型
+  static const storageCoinType = 'allowCoinType';
 }

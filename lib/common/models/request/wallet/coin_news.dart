@@ -9,3 +9,9 @@ class CoinNewsRequest {
 
   Map<String, dynamic> toJson() => {'start': start, 'end': end, 'token': token};
 }
+
+class CoinWalletIndexRequest {
+  int type;
+  CoinWalletIndexRequest({required this.type});
+  Map<String, dynamic> toJson() => {'type': type};
+}

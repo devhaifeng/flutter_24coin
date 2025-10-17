@@ -8,10 +8,16 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json['total'] as int?,
-    data: (json['data'] as List<dynamic>?)?.map((e) => Datum.fromJson(e as Map<String, dynamic>)).toList(),
+    data:
+        (json['data'] as List<dynamic>?)
+            ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+            .toList(),
   );
 
-  Map<String, dynamic> toJson() => {'total': total, 'data': data?.map((e) => e.toJson()).toList()};
+  Map<String, dynamic> toJson() => {
+    'total': total,
+    'data': data?.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// 提供给前端展示的新闻数据
@@ -23,8 +29,14 @@ class CoinNewsData {
 
   factory CoinNewsData.fromJson(Map<String, dynamic> json) => CoinNewsData(
     date: json['date'] as String?,
-    data: (json['data'] as List<dynamic>?)?.map((e) => Datum.fromJson(e as Map<String, dynamic>)).toList(),
+    data:
+        (json['data'] as List<dynamic>?)
+            ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+            .toList(),
   );
 
-  Map<String, dynamic> toJson() => {'date': date, 'data': data?.map((e) => e.toJson()).toList()};
+  Map<String, dynamic> toJson() => {
+    'date': date,
+    'data': data?.map((e) => e.toJson()).toList(),
+  };
 }

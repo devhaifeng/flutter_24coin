@@ -8,9 +8,7 @@ class ContractPage extends GetView<ContractController> {
 
   // 主视图
   Widget _buildView() {
-    return const Center(
-      child: Text("ContractPage"),
-    );
+    return const Center(child: Text("ContractPage"));
   }
 
   @override
@@ -21,9 +19,7 @@ class ContractPage extends GetView<ContractController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(title: const Text("contract")),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          body: SafeArea(child: _buildView()),
         );
       },
     );

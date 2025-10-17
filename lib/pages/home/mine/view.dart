@@ -8,9 +8,7 @@ class MinePage extends GetView<MineController> {
 
   // 主视图
   Widget _buildView() {
-    return const Center(
-      child: Text("MinePage"),
-    );
+    return const Center(child: Text("MinePage"));
   }
 
   @override
@@ -21,9 +19,7 @@ class MinePage extends GetView<MineController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(title: const Text("mine")),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          body: SafeArea(child: _buildView()),
         );
       },
     );

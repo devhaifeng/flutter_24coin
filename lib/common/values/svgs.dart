@@ -61,7 +61,7 @@ class AssetsSvgs {
   static const iconWalletExchangeEnableSvg = 'assets/svgs/main/icon_wallet_exchange_enable.svg';
   static const iconWalletExchangeEnableDarkSvg = 'assets/svgs/main/icon_wallet_exchange_enable_dark.svg';
   static const iconWalletScanEnableSvg = 'assets/svgs/main/icon_wallet_scan_enable.svg';
-  static const iconWalletScanUnableCopySvg = 'assets/svgs/main/icon_wallet_scan_unable copy.svg';
+  static const iconWalletScanEnableDarkSvg = 'assets/svgs/main/icon_wallet_scan_enable_dark.svg';
   static const iconWalletScanUnableSvg = 'assets/svgs/main/icon_wallet_scan_unable.svg';
   static const iconWalletScanUnableDarkSvg = 'assets/svgs/main/icon_wallet_scan_unable_dark.svg';
   static const iconWalletSellEnableSvg = 'assets/svgs/main/icon_wallet_sell_enable.svg';

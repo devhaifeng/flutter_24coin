@@ -8,9 +8,7 @@ class MessagePage extends GetView<MessageController> {
 
   // 主视图
   Widget _buildView() {
-    return const Center(
-      child: Text("MessagePage"),
-    );
+    return const Center(child: Text("MessagePage"));
   }
 
   @override
@@ -21,9 +19,7 @@ class MessagePage extends GetView<MessageController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(title: const Text("message")),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          body: SafeArea(child: _buildView()),
         );
       },
     );

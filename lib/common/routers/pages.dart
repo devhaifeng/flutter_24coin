@@ -10,11 +10,9 @@ class RoutePages {
     GetPage(name: RouteNames.systemSplash, page: () => const SplashPage()),
     GetPage(name: RouteNames.systemWelcome, page: () => const WelcomePage()),
     GetPage(name: RouteNames.systemCountryCode, page: () => CountryCodePage()),
-    GetPage(
-      name: RouteNames.systemMain,
-      page: () => const MainPage(),
-      binding: MainBinding(),
-    ),
+    GetPage(name: RouteNames.systemMain, page: () => const MainPage(), binding: MainBinding()),
     GetPage(name: RouteNames.systemRegister, page: () => const RegisterPage()),
+    GetPage(name: RouteNames.homeWalletWalletUsdtSend, page: () => const WalletUsdtSendPage()),
+    GetPage(name: RouteNames.homeWalletWalletUsdtReceive, page: () => const WalletUsdtReceivePage()),
   ];
 }

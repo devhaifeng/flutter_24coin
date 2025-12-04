@@ -1,0 +1,5 @@
+static const iconWalletReceiveBackSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_back.svg';
+static const iconWalletReceiveCopySvg = 'assets/svgs/wallet/receive/icon_wallet_receive_copy.svg';
+static const iconWalletReceiveExportSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_export.svg';
+static const iconWalletReceiveQrcodeLogoSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_qrcode_logo.svg';
+static const iconWalletReceiveWarnSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_warn.svg';

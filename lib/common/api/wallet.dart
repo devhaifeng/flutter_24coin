@@ -32,4 +32,11 @@ class WalletApi {
     final response = await WPHttpService.to.post('/dc/wallet/get/coin/show');
     return BaseListResponse<CoinWalletShow>.fromJson(response.data, (data) => CoinWalletShow.fromJson(data));
   }
+
+  ///获取币种地址 转化成二维码
+  static Future<BaseResponse<String>> getWalletCoinAddress(int type) async {
+    CoinWalletIndexRequest request = CoinWalletIndexRequest(type: type);
+    final response = await WPHttpService.to.post('/dc/wallet/exist/addr', data: request);
+    return BaseResponse<String>.fromJson(response.data, (data) => data);
+  }
 }

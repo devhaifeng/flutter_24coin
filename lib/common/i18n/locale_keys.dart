@@ -4,6 +4,12 @@ class LocaleKeys {
   static const welcomLoginButton = 'welcom_login_button';
   static const welcomCreateAccount = 'welcom_create_account';
 
+  ///通用
+  static const commonCopy = 'common_copy';
+  static const commonCopySuccess = 'common_copy_success';
+  static const commonCopyFail = 'common_copy_faid';
+  static const commonNextStep = 'common_next_step';
+
   ///登录
   static const commonLogin = 'common_login';
   static const loginPhoneCodeHint = 'login_phone_code_hint';
@@ -58,4 +64,18 @@ class LocaleKeys {
   static const walletTabDayGainer = 'wallet_tab_day_gainer';
   static const walletTabDayLoser = 'wallet_tab_day_loser ';
   static const walletTabDayVolume = 'wallet_tab_day_volume ';
+  static const walletReceiveHint = 'wallet_receive_hint ';
+  static const walletReceiveUsdt = 'wallet_receive_usdt ';
+  static const walletReceiveTrc20 = 'wallet_receive_trc20 ';
+  static const walletReceiveErc20 = 'wallet_receive_erc20 ';
+
+  static const walletSendHint = 'wallet_send_hint';
+  static const walletSendAddress = 'wallet_send_address';
+  static const walletSendInputAddress = 'wallet_send_input_address';
+  static const walletSendNumber = 'wallet_send_number';
+  static const walletSendInputNumber = 'wallet_send_input_number';
+  static const walletSendAll = 'wallet_send_all';
+  static const walletSendActuallyArrived = 'wallet_send_actually_arrived';
+  static const walletSendHandlingFee = 'wallet_send_handling_fee';
+  static const walletSendPaste = 'wallet_send_handling_paste';
 }

@@ -1,7 +1,13 @@
+import 'package:flutter/services.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
 class WalletUsdtReceiveController extends GetxController {
   WalletUsdtReceiveController();
+
+  int? coinType = Get.arguments["coinType"];
+
+  String? coinAddress = Get.arguments["coinAddress"];
 
   _initData() {
     update(["wallet_usdt_receive"]);
@@ -9,19 +15,19 @@ class WalletUsdtReceiveController extends GetxController {
 
   void onTap() {}
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   @override
   void onReady() {
     super.onReady();
     _initData();
   }
 
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+  Future<void> copyToClipboardSafely(String text) async {
+    try {
+      await Clipboard.setData(ClipboardData(text: text));
+      SmartDialog.showToast('复制成功');
+      // 显示成功提示
+    } catch (e) {
+      SmartDialog.showToast('复制失败，请重试');
+    }
+  }
 }

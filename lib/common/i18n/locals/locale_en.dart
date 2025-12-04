@@ -7,6 +7,8 @@ Map<String, String> localeEn = {
   LocaleKeys.welcomCreateAccount: 'Create Account',
 
   LocaleKeys.commonLogin: 'Login',
+  LocaleKeys.commonCopySuccess: 'Copy Successful',
+  LocaleKeys.commonCopyFail: 'Copy Failed',
   LocaleKeys.loginPhoneCodeHint: '+86',
   LocaleKeys.loginPhoneHint: 'phone number',
   LocaleKeys.loginRememberPassword: 'Remember Password',
@@ -53,4 +55,22 @@ Map<String, String> localeEn = {
   LocaleKeys.walletTabDayGainer: '24h Gainer',
   LocaleKeys.walletTabDayLoser: '24h Loser ',
   LocaleKeys.walletTabDayVolume: '24h Volume ',
+  LocaleKeys.commonCopy: 'Copy ',
+  LocaleKeys.walletReceiveHint:
+      'Please send USDT (TRC20) assets to this address; other assets will be permanently lost. ',
+  LocaleKeys.walletReceiveUsdt: 'Receive USDT',
+  LocaleKeys.walletReceiveTrc20: 'TRC20',
+  LocaleKeys.walletReceiveErc20: 'ERC20',
+
+  LocaleKeys.walletSendHint:
+      'Please ensure that the USDT (TRC20) network you select is consistent with the USDT (TRC20) network used on the withdrawal platform, otherwise assets may be lost',
+  LocaleKeys.walletSendAddress: 'Address',
+  LocaleKeys.walletSendInputAddress: 'Please enter the sending address',
+  LocaleKeys.walletSendNumber: 'Amount',
+  LocaleKeys.walletSendInputNumber: 'Enter the sending amount',
+  LocaleKeys.walletSendAll: 'All',
+  LocaleKeys.walletSendActuallyArrived: 'Actual Arrival:',
+  LocaleKeys.walletSendHandlingFee: 'Handling Fee',
+  LocaleKeys.walletSendPaste: 'Paste',
+  LocaleKeys.commonNextStep: 'Next Step',
 };

@@ -11,14 +11,7 @@ class CoinItemWidget extends StatelessWidget {
   final String? rightText;
   final Color? rightColor;
 
-  const CoinItemWidget({
-    super.key,
-    this.coinName,
-    this.logoUrl,
-    this.newPrice,
-    this.rightText,
-    this.rightColor,
-  });
+  const CoinItemWidget({super.key, this.coinName, this.logoUrl, this.newPrice, this.rightText, this.rightColor});
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +33,9 @@ class CoinItemWidget extends StatelessWidget {
             },
           ),
           SizedBox(width: 15),
-          TextWidget.body(
-            coinName ?? '',
-            color: Get.isDarkMode ? Colors.white : Colors.black,
-          ),
+          TextWidget.body(coinName ?? '', color: Get.isDarkMode ? Colors.white : Colors.black),
           Spacer(),
-          TextWidget.body(
-            newPrice ?? '',
-            color: Get.isDarkMode ? Colors.white : Colors.black,
-          ),
+          TextWidget.body(newPrice ?? '', color: Get.isDarkMode ? Colors.white : Colors.black),
           SizedBox(width: 45),
           TextWidget.body(rightText ?? '', color: rightColor),
         ],

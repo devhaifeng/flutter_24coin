@@ -1,8 +1,8 @@
 /// 常量
 class Constants {
   // 服务 api
-  static const apiUrl = 'http://3.1.213.205:8083';
-  static const coinApiUrl = 'http://dctools.24pay01.cn';
+  static const apiUrl = 'http://54.255.3.235:8083';
+  static const coinApiUrl = 'http://dctools.24paycdn1.cn';
   static const wsToken = 'oKRBn6Z4E7GmbINzTOK8';
 
   ///接口成功状态
@@ -10,7 +10,7 @@ class Constants {
 
   static const netLineList = [
     "https://test.lalashi.cn/",
-    "http://3.1.213.205:8083/",
+    "http://54.255.3.235:8083/",
     "https://13593x8f03.vicp.fun/",
     "http://s2.gnip.vip:12201/",
     "https://huhuhu.xiaomiqiu.com/",

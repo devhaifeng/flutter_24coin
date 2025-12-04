@@ -7,19 +7,7 @@ import 'package:get/get.dart';
 ///选择国家代手机号
 class CountryCodePage extends GetView<LoginController> {
   final List<CountryCodeModel> countryCodes = Get.arguments["countryCodes"];
-  final List<String> pngFlag = [
-    "86",
-    "852",
-    "1",
-    "73",
-    "971",
-    "62",
-    "63",
-    "66",
-    "856",
-    "82",
-    "60",
-  ];
+  final List<String> pngFlag = ["86", "852", "1", "73", "971", "62", "63", "66", "856", "82", "60"];
 
   CountryCodePage({super.key});
 
@@ -28,14 +16,8 @@ class CountryCodePage extends GetView<LoginController> {
       backIcon: Text(""),
       titleString: LocaleKeys.commonSelectCountry.tr,
       rightWidget: SvgSelector(
-        normalSvg:
-            Get.isDarkMode
-                ? AssetsSvgs.iconCommonCloseDarkSvg
-                : AssetsSvgs.iconCommonCloseLightSvg,
-        pressedSvg:
-            Get.isDarkMode
-                ? AssetsSvgs.iconCommonCloseDarkSvg
-                : AssetsSvgs.iconCommonCloseLightPressSvg,
+        normalSvg: Get.isDarkMode ? AssetsSvgs.iconCommonCloseDarkSvg : AssetsSvgs.iconCommonCloseLightSvg,
+        pressedSvg: Get.isDarkMode ? AssetsSvgs.iconCommonCloseDarkSvg : AssetsSvgs.iconCommonCloseLightPressSvg,
 
         onTap: () => Get.back(),
       ),
@@ -62,24 +44,15 @@ class CountryCodePage extends GetView<LoginController> {
                 child: InkWell(
                   borderRadius:
                       index == 0
-                          ? BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          )
+                          ? BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))
                           : index == countryCodes.length - 1
-                          ? BorderRadius.only(
-                            bottomLeft: Radius.circular(16),
-                            bottomRight: Radius.circular(16),
-                          )
+                          ? BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))
                           : BorderRadius.zero,
                   onTap: () {
                     Get.back(result: "+${code.code}");
                   },
                   splashColor: Colors.transparent, // 点击水波纹颜色
-                  highlightColor:
-                      Get.isDarkMode
-                          ? Color(0x800F161D)
-                          : Color(0xFFEEEEEE), // 长按高亮色
+                  highlightColor: Get.isDarkMode ? Color(0x800F161D) : Color(0xFFEEEEEE), // 长按高亮色
                   child: ListTile(
                     leading:
                         pngFlag.contains(code.code!)
@@ -99,9 +72,7 @@ class CountryCodePage extends GetView<LoginController> {
                             ),
 
                     title: Text(
-                      ConfigService.to.locale == Locale('en', 'US')
-                          ? code.nameEn!
-                          : code.nameCn!,
+                      ConfigService.to.locale == Locale('en', 'US') ? code.nameEn! : code.nameCn!,
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -132,11 +103,7 @@ class CountryCodePage extends GetView<LoginController> {
         return Scaffold(
           body: SafeArea(
             bottom: false,
-            child:
-                <Widget>[
-                  _buildAppBar(context),
-                  _buildCountryCodeList(context),
-                ].toColumn(),
+            child: <Widget>[_buildAppBar(context), _buildCountryCodeList(context)].toColumn(),
           ),
         );
       },

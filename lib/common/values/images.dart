@@ -1,21 +1,16 @@
 /// 图片 assets
 class AssetsImages {
   static const iconCountryChinaPng = 'assets/images/icon_country_china.png';
-  static const iconCountryHongkongPng =
-      'assets/images/icon_country_hongkong.png';
-  static const iconCountryIndonesiaPng =
-      'assets/images/icon_country_indonesia.png';
+  static const iconCountryHongkongPng = 'assets/images/icon_country_hongkong.png';
+  static const iconCountryIndonesiaPng = 'assets/images/icon_country_indonesia.png';
   static const iconCountryLaosPng = 'assets/images/icon_country_laos.png';
   static const iconCountryMacaoPng = 'assets/images/icon_country_macao.png';
-  static const iconCountryMalaysiaPng =
-      'assets/images/icon_country_malaysia.png';
-  static const iconCountryPhilippinesPng =
-      'assets/images/icon_country_philippines.png';
-  static const iconCountryThailandPng =
-      'assets/images/icon_country_thailand.png';
-  static const iconCountryUnitedArabEmiratesPng =
-      'assets/images/icon_country_united_arab_emirates.png';
+  static const iconCountryMalaysiaPng = 'assets/images/icon_country_malaysia.png';
+  static const iconCountryPhilippinesPng = 'assets/images/icon_country_philippines.png';
+  static const iconCountryThailandPng = 'assets/images/icon_country_thailand.png';
+  static const iconCountryUnitedArabEmiratesPng = 'assets/images/icon_country_united_arab_emirates.png';
   static const iconCountryUsaPng = 'assets/images/icon_country_usa.png';
   static const iconWalletCoinPng = 'assets/images/icon_wallet_coin.png';
   static const iconWalletCoin2Png = 'assets/images/icon_wallet_coin2.png';
+  static const iconWalletQrcodeLogoPng = 'assets/images/icon_wallet_qrcode_logo.png';
 }

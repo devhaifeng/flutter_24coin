@@ -1,0 +1,2 @@
+static const iconWalletSendHintSvg = 'assets/svgs/wallet/send/icon_wallet_send_hint.svg';
+static const iconWalletSendScanSvg = 'assets/svgs/wallet/send/icon_wallet_send_scan.svg';

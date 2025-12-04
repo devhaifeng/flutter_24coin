@@ -10,3 +10,4 @@ static const iconCountryUnitedArabEmiratesPng = 'assets/images/icon_country_unit
 static const iconCountryUsaPng = 'assets/images/icon_country_usa.png';
 static const iconWalletCoinPng = 'assets/images/icon_wallet_coin.png';
 static const iconWalletCoin2Png = 'assets/images/icon_wallet_coin2.png';
+static const iconWalletQrcodeLogoPng = 'assets/images/icon_wallet_qrcode_logo.png';

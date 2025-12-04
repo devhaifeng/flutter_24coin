@@ -73,5 +73,17 @@ class AssetsSvgs {
   static const iconWalletTrcCoinSvg = 'assets/svgs/main/icon_wallet_trc_coin.svg';
   static const iconWalletUsdtCoinSvg = 'assets/svgs/main/icon_wallet_usdt_coin.svg';
   static const iconWalletNewsTimeSvg = 'assets/svgs/main/icon_wallet_news_time.svg';
+
+  static const iconWalletReceiveBackSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_back.svg';
+  static const iconWalletReceiveBackDarkSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_back_dark.svg';
+  static const iconWalletReceiveCopySvg = 'assets/svgs/wallet/receive/icon_wallet_receive_copy.svg';
+  static const iconWalletReceiveExportSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_export.svg';
+  static const iconWalletReceiveExportDarkSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_export_dark.svg';
+  static const iconWalletReceiveQrcodeLogoSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_qrcode_logo.svg';
+  static const iconWalletReceiveWarnSvg = 'assets/svgs/wallet/receive/icon_wallet_receive_warn.svg';
+
+  static const iconWalletSendHintSvg = 'assets/svgs/wallet/send/icon_wallet_send_hint.svg';
+  static const iconWalletSendScanSvg = 'assets/svgs/wallet/send/icon_wallet_send_scan.svg';
+
   /* --------- wallet ------------*/
 }

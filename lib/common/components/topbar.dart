@@ -9,14 +9,7 @@ class AppTopBar extends StatelessWidget {
   final OnTap? onTap;
   final OnTap? onRightTap;
 
-  const AppTopBar({
-    super.key,
-    this.backIcon,
-    this.titleString,
-    this.rightWidget,
-    this.onTap,
-    this.onRightTap,
-  });
+  const AppTopBar({super.key, this.backIcon, this.titleString, this.rightWidget, this.onTap, this.onRightTap});
 
   @override
   Widget build(BuildContext context) {

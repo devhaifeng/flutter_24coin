@@ -49,19 +49,18 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
 
   @override
   void onInit() async {
-    String coinList = Storage().getString(SPConstants.storageCoinType);
-    print('本地存储的币种列表===>$coinList');
-    if (coinList.isEmpty) {
-      requestAllowedCoinList();
-    } else {
-      allowedCoinList =
-          (jsonDecode(Storage().getString(SPConstants.storageCoinType)) as List)
-              .map((e) => CoinAllowData.fromJson(e))
-              .toList();
-      lastCoinType = allowedCoinList!.firstWhere((element) => element.isSelected == true).value;
-      requestAllowedCoinList();
-      requestWallBalanceData();
+    String? coinList = Storage().getString(SPConstants.storageCoinType);
+    if (coinList.isNotEmpty) {
+      List<dynamic> jsonData = jsonDecode(coinList);
+      allowedCoinList = jsonData.map((e) => CoinAllowData.fromJson(e)).toList();
+      for (var element in allowedCoinList!) {
+        if (element.isSelected == true) {
+          lastCoinType = element.value;
+        }
+      }
     }
+    requestAllowedCoinList();
+    requestWallBalanceData();
     requestCoinBalanceData();
     generatedUUID = uuid.v4().replaceAll('-', '');
     tabController = TabController(length: 5, vsync: this);
@@ -140,7 +139,11 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   }
 
   Future<void> requestWallBalanceData() async {
-    int coinType = allowedCoinList?.firstWhere((element) => element.isSelected == true).value ?? 3;
+    int coinType =
+        allowedCoinList?.firstWhere((element) => element.isSelected == true, orElse: () => CoinAllowData()).value ?? 3;
+    if (allowedCoinList!.isNotEmpty) {
+      coinType = allowedCoinList?.firstWhere((element) => element.isSelected == true).value ?? 3;
+    }
     BaseResponse<CoinWalletIndexData> response = await WalletApi.getHomeWalletData(coinType);
     walletIndexData = response.data!;
     update(["wallet"]);
@@ -163,6 +166,7 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
     BaseListResponse<CoinAllowData> model = await WalletApi.getAllowedCoinList();
     allowedCoinList?.clear();
     allowedCoinList?.addAll(model.data ?? []);
+    allowedCoinList?.add(CoinAllowData(value: 2, appDisplay: 'USDT(ERC20)', isSelected: false));
     allowedCoinList?.forEach((element) {
       switch (element.value) {
         case 1:

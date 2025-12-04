@@ -18,6 +18,7 @@ class RegisterInputWidget extends StatefulWidget {
     this.keyboardType,
     this.autofocus,
     this.onTap,
+    this.radius,
     // required this.focusNode,
     // required this.style,
     // required this.cursorColor,
@@ -56,6 +57,8 @@ class RegisterInputWidget extends StatefulWidget {
 
   /// 点击事件
   final Function()? onTap;
+
+  final int? radius;
 
   // final FocusNode focusNode;
   // final TextStyle style;
@@ -105,9 +108,7 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
     // 显示密码按钮
     if (widget.obscureText == true) {
       suffix = IconWidget.svg(
-        showPassword == true
-            ? AssetsSvgs.loginPasswordVisiableSvg
-            : AssetsSvgs.loginPasswordGoneSvg,
+        showPassword == true ? AssetsSvgs.loginPasswordVisiableSvg : AssetsSvgs.loginPasswordGoneSvg,
         size: 20,
       ).clipOval().gestures(
         onTap:
@@ -134,23 +135,15 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
 
     // 占位文本
     Widget? placeholder =
-        controller.text.isEmpty &&
-                hasFocus == false &&
-                widget.placeholder != null
-            ? Align(
-              alignment: Alignment.centerLeft,
-              child: TextWidget.body(widget.placeholder!),
-            )
+        controller.text.isEmpty && hasFocus == false && widget.placeholder != null
+            ? Align(alignment: Alignment.centerLeft, child: TextWidget.body(widget.placeholder!))
             : null;
 
     // 2 输入框
     Widget textField = const SizedBox();
     if (widget.readOnly == true) {
       // 只读
-      textField = TextWidget.label(
-        controller.text,
-        color: colorScheme.onSurface,
-      ).width(double.infinity);
+      textField = TextWidget.label(controller.text, color: colorScheme.onSurface).width(double.infinity);
       // 点击事件
       if (widget.onTap != null) {
         textField = textField.onTap(widget.onTap);
@@ -182,71 +175,29 @@ class _RegisterInputWidgetState extends State<RegisterInputWidget> {
     Widget inputArea = Stack(
       children: [
         if (placeholder != null)
-          Positioned(
-            child: TextWidget.label(
-              widget.placeholder!,
-              color: AppTheme.commonTextColorSecondery,
-            ),
-          ),
-        textField.marginOnly(right: cleanButton != null ? 30 : 0),
-        if (cleanButton != null)
-          Positioned(
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Center(child: cleanButton),
-          ),
+          Positioned(child: TextWidget.label(widget.placeholder!, color: AppTheme.commonTextColorSecondery)),
+        textField.marginOnly(right: cleanButton != null ? 30 : 100),
+        if (cleanButton != null) Positioned(right: 0, top: 0, bottom: 0, child: Center(child: cleanButton)),
       ],
     );
 
     // 返回
     return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(AppRadius.input),
-      ),
+      height: double.infinity,
+      decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(AppRadius.input)),
       child: <Widget>[
         if (prefix != null) prefix!,
         Expanded(child: inputArea),
-        if (suffix != null)
-          Padding(padding: const EdgeInsets.only(left: 8), child: suffix!),
+        if (suffix != null) Padding(padding: const EdgeInsets.only(left: 8), child: suffix!),
       ].toRowSpace(space: 5).paddingVertical(10).paddingHorizontal(20),
     ).decorated(
       color: Colors.transparent, //colorScheme.surface,
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(widget.radius?.toDouble() ?? AppRadius.input),
       border: Border.all(
         color: hasFocus == true ? colorScheme.primary : Colors.transparent,
         width: hasFocus == true ? 1 : 0,
       ),
     );
-
-    // // 内边框
-    // return child
-    //     .padding(
-    //       horizontal: 12,
-    //       vertical: 10,
-    //     )
-    //     .decorated(
-    //       color: Colors.transparent, // colorScheme.surface,
-    //       borderRadius: BorderRadius.circular(AppRadius.input),
-    //       border: Border.all(
-    //         color: colorScheme.outline,
-    //         width: 0.5,
-    //       ),
-    //     );
-
-    // // 外边框, 焦点框
-    // child = child.paddingAll(5).decorated(
-    //       color: Colors.transparent, //colorScheme.surface,
-    //       borderRadius: BorderRadius.circular(AppRadius.input),
-    //       border: Border.all(
-    //         color: hasFocus == true ? colorScheme.primary : Colors.transparent,
-    //         width: hasFocus == true ? 2 : 0,
-    //       ),
-    //     );
-
-    // return child;
   }
 
   @override

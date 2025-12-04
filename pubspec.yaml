@@ -68,6 +68,10 @@ dependencies:
   web_socket_channel: ^2.4.0
   intl: ^0.19.0
   dropdown_button2: ^2.3.9
+  # 生成二维码
+  qr_flutter: ^4.0.0
+  # 弹窗
+  flutter_smart_dialog: ^4.9.8
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +100,8 @@ flutter:
   - assets/svgs/common/
   - assets/svgs/login/
   - assets/svgs/main/
+  - assets/svgs/wallet/receive/
+  - assets/svgs/wallet/send/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

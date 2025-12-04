@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_24coin/common/index.dart';
 import 'package:flutter_24coin/config/env.dart';
 import 'package:flutter_24coin/global.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           debugShowFloatingThemeButton: true, // 显示主题按钮
           builder: (ThemeData light, ThemeData dark) {
             return GetMaterialApp(
+              builder: FlutterSmartDialog.init(),
               title: AppEnvironment.appName,
               theme: light,
               darkTheme: dark,

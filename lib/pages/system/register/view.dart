@@ -47,10 +47,7 @@ class RegisterPage extends GetView<RegisterController> {
           horizontalPadding: 16,
           height: 50,
           text: controller.currentCountryCode,
-          rightIcon: IconWidget.svg(
-            AssetsSvgs.appbarCommonDownwardtSvg,
-            size: 12,
-          ),
+          rightIcon: IconWidget.svg(AssetsSvgs.appbarCommonDownwardtSvg, size: 12),
           onTap: () => controller.selectCountryCode(),
         ),
         Expanded(
@@ -77,7 +74,6 @@ class RegisterPage extends GetView<RegisterController> {
       CommonContainer(
         margin: EdgeInsets.symmetric(horizontal: 16),
         variant: ContainerWidgetVariant.input,
-
         height: 50,
         input: Expanded(
           child:
@@ -104,11 +100,7 @@ class RegisterPage extends GetView<RegisterController> {
                 controller.startCountdown();
                 controller.requestPhoneCode();
               },
-              child: Text(
-                controller.isCounting
-                    ? '${controller.remainingSeconds}S'
-                    : '获取验证码',
-              ),
+              child: Text(controller.isCounting ? '${controller.remainingSeconds}S' : '获取验证码'),
             ).marginOnly(right: 20),
           ].toStack(alignment: Alignment.centerRight),
         ),
@@ -181,19 +173,13 @@ class RegisterPage extends GetView<RegisterController> {
             width: double.infinity,
           ),
           <Widget>[
-            TextWidget.minbody(
-              LocaleKeys.loginAlreadyHaveAccount.tr,
-              color: AppTheme.commonTextColorSecondery,
-            ),
+            TextWidget.minbody(LocaleKeys.loginAlreadyHaveAccount.tr, color: AppTheme.commonTextColorSecondery),
             TextWidget.minbody(
               LocaleKeys.goRegister.tr,
               color: AppTheme.primary,
               onTap: () => controller.goLoginPage(context),
             ),
-            IconWidget.svg(
-              AssetsSvgs.iconCommonArrowRightSvg,
-              color: AppTheme.primary,
-            ),
+            IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, color: AppTheme.primary),
           ].toRow(mainAxisAlignment: MainAxisAlignment.center),
         ]
         .toColumnSpace(space: 20, crossAxisAlignment: CrossAxisAlignment.center)
@@ -214,16 +200,9 @@ class RegisterPage extends GetView<RegisterController> {
               ),
               child: <Widget>[
                 IconWidget.svg(AssetsSvgs.loginLanguageSvg),
-                TextWidget.minbody(
-                  LocaleKeys.commonLanguage.tr,
-                  color: AppTheme.info,
-                ),
+                TextWidget.minbody(LocaleKeys.commonLanguage.tr, color: AppTheme.info),
                 IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg),
-              ].toRowSpace(
-                space: 5,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
+              ].toRowSpace(space: 5, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
             )
             .gestures(
               onTap: () => displayLanguageDialog(context),
@@ -275,34 +254,23 @@ class RegisterPage extends GetView<RegisterController> {
             child: <Widget>[
               IconWidget.svg(
                 AssetsSvgs.loginNetLineSvg,
-                color:
-                    _isPreess ? AppTheme.info.withOpacity(0.7) : AppTheme.info,
+                color: _isPreess ? AppTheme.info.withOpacity(0.7) : AppTheme.info,
               ),
               TextWidget.minbody(
                 LocaleKeys.commonSwitchNetLine.tr,
                 color:
-                    _isPreess
-                        ? AppTheme.commonTextColorSecondery.withOpacity(0.7)
-                        : AppTheme.commonTextColorSecondery,
+                    _isPreess ? AppTheme.commonTextColorSecondery.withOpacity(0.7) : AppTheme.commonTextColorSecondery,
               ),
               IconWidget.svg(
                 AssetsSvgs.iconCommonArrowRightSvg,
-                color:
-                    _isPreess ? AppTheme.info.withOpacity(0.5) : AppTheme.info,
+                color: _isPreess ? AppTheme.info.withOpacity(0.5) : AppTheme.info,
               ),
-            ].toRowSpace(
-              space: 5,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
+            ].toRowSpace(space: 5, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
           ),
         ),
       ].toRowSpace(space: 15.w, mainAxisAlignment: MainAxisAlignment.center),
       SizedBox(height: 15.h),
-      TextWidget.minbody(
-        "版本 ｜ v1.0.0",
-        color: AppTheme.commonTextColorSecondery,
-      ),
+      TextWidget.minbody("版本 ｜ v1.0.0", color: AppTheme.commonTextColorSecondery),
     ].toColumn().marginOnly(bottom: 30.h);
   }
 
@@ -311,8 +279,7 @@ class RegisterPage extends GetView<RegisterController> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true, // 点击背景是否关闭
-      barrierLabel:
-          MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
       barrierColor: Colors.black54, // 背景遮罩颜色
       transitionDuration: const Duration(milliseconds: 300), // 动画时长
       pageBuilder: (context, animation, secondaryAnimation) {
@@ -329,10 +296,7 @@ class RegisterPage extends GetView<RegisterController> {
                   height: 280,
                   decoration: BoxDecoration(
                     color: Get.isDarkMode ? Color(0xFF28323E) : Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                   ),
                   padding: EdgeInsets.all(16),
                   child: Column(
@@ -348,9 +312,7 @@ class RegisterPage extends GetView<RegisterController> {
                         height: 50,
                         text: "简体中文",
                         textSize: 15,
-                        rightWidget: CheckboxWidget(
-                          checked: controll.isChinese,
-                        ),
+                        rightWidget: CheckboxWidget(checked: controll.isChinese),
                         onTap: () {
                           controll.setLanguarge(0, context);
                         },
@@ -364,9 +326,7 @@ class RegisterPage extends GetView<RegisterController> {
                         height: 50,
                         text: "Emglish",
                         textSize: 15,
-                        rightWidget: CheckboxWidget(
-                          checked: controll.isEnglish,
-                        ),
+                        rightWidget: CheckboxWidget(checked: controll.isEnglish),
                         onTap: () {
                           controll.setLanguarge(1, context);
                         },
@@ -412,8 +372,7 @@ class RegisterPage extends GetView<RegisterController> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true, // 点击背景是否关闭
-      barrierLabel:
-          MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
       barrierColor: Colors.black54, // 背景遮罩颜色
       transitionDuration: const Duration(milliseconds: 300), // 动画时长
       pageBuilder: (context, animation, secondaryAnimation) {
@@ -430,40 +389,26 @@ class RegisterPage extends GetView<RegisterController> {
                   height: 388,
                   decoration: BoxDecoration(
                     color: context.theme.colorScheme.onPrimaryContainer,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                   child: <Widget>[
                     Stack(
                       children: [
-                        TextWidget.h5(
-                          LocaleKeys.commonSwitchNetLine.tr,
-                        ).alignCenter(),
+                        TextWidget.h5(LocaleKeys.commonSwitchNetLine.tr).alignCenter(),
 
                         <Widget>[
                               RotationTransition(
-                                turns: Tween(
-                                  begin: 0.0,
-                                  end: 1.0,
-                                ).animate(controller.refreshNetController),
+                                turns: Tween(begin: 0.0, end: 1.0).animate(controller.refreshNetController),
                                 child: IconWidget.svg(
                                   AssetsSvgs.iconNetLineRefreshSvg,
                                   size: 18,
-                                  color:
-                                      isPress
-                                          ? AppTheme.commonPrimaryPressColor
-                                          : context.colors.scheme.primary,
+                                  color: isPress ? AppTheme.commonPrimaryPressColor : context.colors.scheme.primary,
                                 ),
                               ), // 从0到1表示一圈,)
                               TextWidget.minbody(
                                 LocaleKeys.loginRefresh.tr,
-                                color:
-                                    isPress
-                                        ? AppTheme.commonPrimaryPressColor
-                                        : context.colors.scheme.primary,
+                                color: isPress ? AppTheme.commonPrimaryPressColor : context.colors.scheme.primary,
                               ),
                             ]
                             .toRowSpace(
@@ -507,24 +452,16 @@ class RegisterPage extends GetView<RegisterController> {
                                 height: 50,
                                 text: netLine.url,
                                 textSize: 15,
-                                rightWidget: CheckboxWidget(
-                                  size: 18,
-                                  checked: netLine.isChecked ?? false,
-                                ),
+                                rightWidget: CheckboxWidget(size: 18, checked: netLine.isChecked ?? false),
                                 onTap: () {
                                   controller.setCurrentNetLine(index);
                                   Get.back();
                                 },
                               ),
                               TextWidget.label(
-                                    netLine.delay != null
-                                        ? "${netLine.delay}ms"
-                                        : "检测中...",
-                                    color: netLine.textColor,
-                                  )
-                                  .align(Alignment.centerRight)
-                                  .height(50)
-                                  .marginOnly(right: 46),
+                                netLine.delay != null ? "${netLine.delay}ms" : "检测中...",
+                                color: netLine.textColor,
+                              ).align(Alignment.centerRight).height(50).marginOnly(right: 46),
                             ],
                           ),
                           SizedBox(height: 10.h),
@@ -560,10 +497,7 @@ class RegisterPage extends GetView<RegisterController> {
       id: "register",
       builder: (_) {
         // 关键设置：防止布局被键盘顶起
-        return Scaffold(
-          body: SafeArea(bottom: false, child: _buildView(context)),
-          resizeToAvoidBottomInset: false,
-        );
+        return Scaffold(body: SafeArea(bottom: false, child: _buildView(context)), resizeToAvoidBottomInset: false);
       },
     );
   }

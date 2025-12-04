@@ -139,10 +139,11 @@ class WalletController extends GetxController with GetSingleTickerProviderStateM
   }
 
   Future<void> requestWallBalanceData() async {
-    int coinType =
-        allowedCoinList?.firstWhere((element) => element.isSelected == true, orElse: () => CoinAllowData()).value ?? 3;
-    if (allowedCoinList!.isNotEmpty) {
-      coinType = allowedCoinList?.firstWhere((element) => element.isSelected == true).value ?? 3;
+    int coinType = 3;
+    if (allowedCoinList != null && allowedCoinList!.isNotEmpty) {
+      coinType =
+          allowedCoinList!.firstWhere((element) => element.isSelected == true, orElse: () => CoinAllowData()).value ??
+          3;
     }
     BaseResponse<CoinWalletIndexData> response = await WalletApi.getHomeWalletData(coinType);
     walletIndexData = response.data!;

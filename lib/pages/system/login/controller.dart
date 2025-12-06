@@ -5,8 +5,7 @@ import 'package:flutter_24coin/common/index.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class LoginController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class LoginController extends GetxController with GetSingleTickerProviderStateMixin {
   ///是否记住密码
   bool isRememberPassword = Storage().getBool(SPConstants.isRememberPwd);
 
@@ -49,8 +48,7 @@ class LoginController extends GetxController
     requestCountryCode();
     mPhoneController.text = UserService.to.getPhoneNumber();
     mPasswordController.text = UserService.to.getPassword();
-    isLoginButtonEnabled =
-        mPhoneController.text.isNotEmpty && mPasswordController.text.isNotEmpty;
+    isLoginButtonEnabled = mPhoneController.text.isNotEmpty && mPasswordController.text.isNotEmpty;
     update(["login"]);
   }
 
@@ -62,10 +60,7 @@ class LoginController extends GetxController
 
   @override
   void onInit() {
-    refreshNetController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
+    refreshNetController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
     testNetLineDelay();
     super.onInit();
   }
@@ -92,8 +87,7 @@ class LoginController extends GetxController
             Constants.netLineList[i],
             show: "线路 ${i + 1}",
             delay: null,
-            isChecked:
-                lastNet.isEmpty ? i == 0 : Constants.netLineList[i] == lastNet,
+            isChecked: lastNet.isEmpty ? i == 0 : Constants.netLineList[i] == lastNet,
             textColor: getDelayColor(0),
           ),
         );
@@ -112,14 +106,10 @@ class LoginController extends GetxController
         try {
           int latency = await measureBaseUrlLatency(url: url);
           netLines.firstWhere((line) => line.url == url).delay = latency;
-          netLines
-              .firstWhere((line) => line.url == url)
-              .textColor = getDelayColor(latency);
+          netLines.firstWhere((line) => line.url == url).textColor = getDelayColor(latency);
         } catch (e) {
           netLines.firstWhere((line) => line.url == url).delay = -1;
-          netLines
-              .firstWhere((line) => line.url == url)
-              .textColor = getDelayColor(-1);
+          netLines.firstWhere((line) => line.url == url).textColor = getDelayColor(-1);
         }
       }),
     );
@@ -273,10 +263,7 @@ class LoginController extends GetxController
   // 选择国家代码
   Future<void> selectCountryCode() async {
     if (countryCodes.isNotEmpty) {
-      final result = await Get.toNamed(
-        RouteNames.systemCountryCode,
-        arguments: {"countryCodes": countryCodes},
-      );
+      final result = await Get.toNamed(RouteNames.systemCountryCode, arguments: {"countryCodes": countryCodes});
       currentCountryCode = result ?? "+86"; // 默认中国
       update(["login"]);
     }
@@ -312,25 +299,18 @@ class LoginController extends GetxController
       while (retryCount < maxRetry) {
         try {
           // 创建超时保护
-          await Future.delayed(
-            Duration(milliseconds: 100 * retryCount),
-          ); // 退避策略
+          await Future.delayed(Duration(milliseconds: 100 * retryCount)); // 退避策略
           stopwatch.start();
 
           final response = await client
               .head(Uri.parse(url))
-              .timeout(
-                timeout,
-                onTimeout: () => throw TimeoutException('请求超时'),
-              );
+              .timeout(timeout, onTimeout: () => throw TimeoutException('请求超时'));
 
           stopwatch.stop();
           if (response.statusCode < 400) {
             latencies.add(stopwatch.elapsedMilliseconds);
           } else {
-            throw http.ClientException(
-              'HTTP ${response.statusCode} ${response.reasonPhrase}',
-            );
+            throw http.ClientException('HTTP ${response.statusCode} ${response.reasonPhrase}');
           }
         } on TimeoutException catch (_) {
           latencies.add(timeout.inMilliseconds); // 记录超时值

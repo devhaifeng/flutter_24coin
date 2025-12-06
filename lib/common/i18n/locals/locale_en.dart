@@ -7,8 +7,10 @@ Map<String, String> localeEn = {
   LocaleKeys.welcomCreateAccount: 'Create Account',
 
   LocaleKeys.commonLogin: 'Login',
+  LocaleKeys.commonConfirm: 'Sure',
   LocaleKeys.commonCopySuccess: 'Copy Successful',
   LocaleKeys.commonCopyFail: 'Copy Failed',
+  LocaleKeys.commonInputPayPassword: 'Please enter payment password',
   LocaleKeys.loginPhoneCodeHint: '+86',
   LocaleKeys.loginPhoneHint: 'phone number',
   LocaleKeys.loginRememberPassword: 'Remember Password',
@@ -73,4 +75,9 @@ Map<String, String> localeEn = {
   LocaleKeys.walletSendHandlingFee: 'Handling Fee',
   LocaleKeys.walletSendPaste: 'Paste',
   LocaleKeys.commonNextStep: 'Next Step',
+  LocaleKeys.walletSendConfirm: 'Confirm Send',
+  LocaleKeys.walletSendAssetType: 'Asset Type',
+  LocaleKeys.walletSendPaymentAddress: 'Payment Address',
+  LocaleKeys.walletSendFee: 'Fee',
+  LocaleKeys.walletSendActualAmountReceived: 'Actual Amount Received',
 };

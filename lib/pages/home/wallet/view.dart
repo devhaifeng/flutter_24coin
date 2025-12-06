@@ -778,8 +778,9 @@ class _WalletViewGetX extends GetView<WalletController> {
       id: "wallet",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(backgroundColor: context.colors.scheme.surfaceContainer, elevation: 0, toolbarHeight: 0),
-          body: SafeArea(child: _buildView(context)),
+          appBar: AppBar(backgroundColor: context.colors.scheme.surfaceContainer, toolbarHeight: 1),
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(bottom: false, child: _buildView(context)),
           backgroundColor: context.colors.scheme.surfaceContainerHighest,
         );
       },

@@ -1,6 +1,5 @@
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_24coin/common/index.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +42,7 @@ class WelcomePage extends GetView<WelcomeController> {
               ].toColumn(),
         ),
       ],
-    );
+    ).width(double.infinity).height(double.infinity);
   }
 
   @override
@@ -52,11 +51,7 @@ class WelcomePage extends GetView<WelcomeController> {
       init: WelcomeController(),
       id: "welcome",
       builder: (_) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(systemOverlayStyle: SystemUiOverlayStyle.dark),
-          body: SafeArea(child: _buildView(context)),
-        );
+        return Scaffold(backgroundColor: Colors.white, body: SafeArea(child: _buildView(context)));
       },
     );
   }

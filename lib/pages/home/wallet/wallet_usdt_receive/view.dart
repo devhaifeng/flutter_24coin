@@ -62,7 +62,7 @@ class WalletUsdtReceivePage extends GetView<WalletUsdtReceiveController> {
               SizedBox(height: 7),
               TextWidget.body(
                 controller.coinAddress ?? '',
-                color: AppTheme.commonTextColor,
+                color: Colors.black,
                 textAlign: TextAlign.center,
               ).paddingSymmetric(horizontal: 20),
             ].toColumn().marginOnly(top: 20, bottom: 20),

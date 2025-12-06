@@ -2,6 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
+import '../../../../common/index.dart';
+
 class WalletUsdtReceiveController extends GetxController {
   WalletUsdtReceiveController();
 
@@ -24,10 +26,10 @@ class WalletUsdtReceiveController extends GetxController {
   Future<void> copyToClipboardSafely(String text) async {
     try {
       await Clipboard.setData(ClipboardData(text: text));
-      SmartDialog.showToast('复制成功');
+      SmartDialog.showToast(LocaleKeys.commonCopySuccess.tr);
       // 显示成功提示
     } catch (e) {
-      SmartDialog.showToast('复制失败，请重试');
+      SmartDialog.showToast(LocaleKeys.commonCopyFail.tr);
     }
   }
 }

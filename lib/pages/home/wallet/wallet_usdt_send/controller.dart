@@ -12,9 +12,16 @@ class WalletUsdtSendController extends GetxController {
   ///币数量输入框控制器
   TextEditingController coinNumberEditeTextControll = TextEditingController();
 
-  int? coinType = Get.arguments["coinType"];
+  int? coinType;
 
-  int? coinBalance = Get.arguments["coinBalance"];
+  int? coinBalance;
+
+  int gasFee = 1;
+
+  ///密码输入框控制器
+  final passwordController = TextEditingController();
+
+  final passwordFocusNode = FocusNode();
 
   _initData() {
     update(["wallet_usdt_send"]);
@@ -23,6 +30,8 @@ class WalletUsdtSendController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    coinType = Get.arguments["coinType"];
+    coinBalance = Get.arguments["coinBalance"];
     coinNumberEditeTextControll.addListener(() {
       String text = coinNumberEditeTextControll.text;
       // 检查输入是否以小数点开头
@@ -34,10 +43,18 @@ class WalletUsdtSendController extends GetxController {
           TextPosition(offset: coinNumberEditeTextControll.text.length),
         );
       } else {
+        if (text.isEmpty) {
+          return;
+        }
         text.toDouble() > coinBalance! / 100
             ? coinNumberEditeTextControll.text = (coinBalance! / 100).toString()
             : null;
+        update(["wallet_usdt_send"]);
       }
+    });
+
+    passwordController.addListener(() {
+      update(["wallet_usdt_send"]);
     });
   }
 
@@ -45,8 +62,6 @@ class WalletUsdtSendController extends GetxController {
     coinNumberEditeTextControll.text = (coinBalance! / 100).toString();
     _initData();
   }
-
-  void onTap() {}
 
   @override
   void onReady() {
@@ -66,6 +81,14 @@ class WalletUsdtSendController extends GetxController {
     } else {
       print('剪贴板为空或无法读取内容。');
     }
+  }
+
+  void sendUsdtTransaction(String value) {
+    // 在这里处理发送USDT交易的逻辑，使用传入的密码value
+    passwordController.clear();
+    passwordFocusNode.unfocus();
+
+    ///调用API接口
   }
 
   @override

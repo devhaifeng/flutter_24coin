@@ -18,7 +18,6 @@ class CountryCodePage extends GetView<LoginController> {
       rightWidget: SvgSelector(
         normalSvg: Get.isDarkMode ? AssetsSvgs.iconCommonCloseDarkSvg : AssetsSvgs.iconCommonCloseLightSvg,
         pressedSvg: Get.isDarkMode ? AssetsSvgs.iconCommonCloseDarkSvg : AssetsSvgs.iconCommonCloseLightPressSvg,
-
         onTap: () => Get.back(),
       ),
     ).backgroundColor(context.theme.colorScheme.surfaceContainerHigh);

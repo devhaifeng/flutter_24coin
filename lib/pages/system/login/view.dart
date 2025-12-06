@@ -48,10 +48,7 @@ class LoginPage extends GetView<LoginController> {
           horizontalPadding: 16,
           height: 50,
           text: controller.currentCountryCode,
-          rightIcon: IconWidget.svg(
-            AssetsSvgs.appbarCommonDownwardtSvg,
-            size: 12,
-          ),
+          rightIcon: IconWidget.svg(AssetsSvgs.appbarCommonDownwardtSvg, size: 12),
           onTap: () => controller.selectCountryCode(),
         ),
         Expanded(
@@ -69,8 +66,7 @@ class LoginPage extends GetView<LoginController> {
                 controller: controller.mPhoneController,
                 onChanged: (value) {
                   controller.isLoginButtonEnabled =
-                      controller.mPhoneController.text.isNotEmpty &&
-                      controller.mPasswordController.text.isNotEmpty;
+                      controller.mPhoneController.text.isNotEmpty && controller.mPasswordController.text.isNotEmpty;
                   controller.update(["login"]);
                 },
               ),
@@ -96,8 +92,7 @@ class LoginPage extends GetView<LoginController> {
                     obscureText: true,
                     onChanged: (value) {
                       controller.isLoginButtonEnabled =
-                          controller.mPhoneController.text.isNotEmpty &&
-                          controller.mPasswordController.text.isNotEmpty;
+                          controller.mPhoneController.text.isNotEmpty && controller.mPasswordController.text.isNotEmpty;
                       controller.update(["login"]);
                     },
                   )
@@ -128,11 +123,7 @@ class LoginPage extends GetView<LoginController> {
                         controller.startCountdown();
                         controller.requestPhoneCode();
                       },
-                      child: Text(
-                        controller.isCounting
-                            ? '${controller.remainingSeconds}S'
-                            : '获取验证码',
-                      ),
+                      child: Text(controller.isCounting ? '${controller.remainingSeconds}S' : '获取验证码'),
                     ),
                   ].toStack(alignment: Alignment.centerRight),
         ),
@@ -152,9 +143,7 @@ class LoginPage extends GetView<LoginController> {
 
           InkWell(
             child: TextWidget.label(
-              controller.currentLoginByPassword
-                  ? LocaleKeys.loginForPhone.tr
-                  : LocaleKeys.loginForPassword.tr,
+              controller.currentLoginByPassword ? LocaleKeys.loginForPhone.tr : LocaleKeys.loginForPassword.tr,
               color: AppTheme.commonTextColorSecondery,
             ),
             onTap: () => controller.changeLoginWays(),
@@ -208,16 +197,9 @@ class LoginPage extends GetView<LoginController> {
               ),
               child: <Widget>[
                 IconWidget.svg(AssetsSvgs.loginLanguageSvg),
-                TextWidget.minbody(
-                  LocaleKeys.commonLanguage.tr,
-                  color: AppTheme.info,
-                ),
+                TextWidget.minbody(LocaleKeys.commonLanguage.tr, color: AppTheme.info),
                 IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg),
-              ].toRowSpace(
-                space: 5,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
+              ].toRowSpace(space: 5, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
             )
             .gestures(
               onTap: () => displayLanguageDialog(context),
@@ -269,34 +251,23 @@ class LoginPage extends GetView<LoginController> {
             child: <Widget>[
               IconWidget.svg(
                 AssetsSvgs.loginNetLineSvg,
-                color:
-                    _isPreess ? AppTheme.info.withOpacity(0.7) : AppTheme.info,
+                color: _isPreess ? AppTheme.info.withOpacity(0.7) : AppTheme.info,
               ),
               TextWidget.minbody(
                 LocaleKeys.commonSwitchNetLine.tr,
                 color:
-                    _isPreess
-                        ? AppTheme.commonTextColorSecondery.withOpacity(0.7)
-                        : AppTheme.commonTextColorSecondery,
+                    _isPreess ? AppTheme.commonTextColorSecondery.withOpacity(0.7) : AppTheme.commonTextColorSecondery,
               ),
               IconWidget.svg(
                 AssetsSvgs.iconCommonArrowRightSvg,
-                color:
-                    _isPreess ? AppTheme.info.withOpacity(0.5) : AppTheme.info,
+                color: _isPreess ? AppTheme.info.withOpacity(0.5) : AppTheme.info,
               ),
-            ].toRowSpace(
-              space: 5,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
+            ].toRowSpace(space: 5, mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center),
           ),
         ),
       ].toRowSpace(space: 15.w, mainAxisAlignment: MainAxisAlignment.center),
       SizedBox(height: 15.h),
-      TextWidget.minbody(
-        "版本 ｜ v1.0.0",
-        color: AppTheme.commonTextColorSecondery,
-      ),
+      TextWidget.minbody("版本 ｜ v1.0.0", color: AppTheme.commonTextColorSecondery),
     ].toColumn().marginOnly(bottom: 30.h);
   }
 
@@ -305,8 +276,7 @@ class LoginPage extends GetView<LoginController> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true, // 点击背景是否关闭
-      barrierLabel:
-          MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
       barrierColor: Colors.black54, // 背景遮罩颜色
       transitionDuration: const Duration(milliseconds: 300), // 动画时长
       pageBuilder: (context, animation, secondaryAnimation) {
@@ -323,10 +293,7 @@ class LoginPage extends GetView<LoginController> {
                   height: 280,
                   decoration: BoxDecoration(
                     color: Get.isDarkMode ? Color(0xFF28323E) : Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                   ),
                   padding: EdgeInsets.all(16),
                   child: Column(
@@ -342,9 +309,7 @@ class LoginPage extends GetView<LoginController> {
                         height: 50,
                         text: "简体中文",
                         textSize: 15,
-                        rightWidget: CheckboxWidget(
-                          checked: controll.isChinese,
-                        ),
+                        rightWidget: CheckboxWidget(checked: controll.isChinese),
                         onTap: () {
                           controll.setLanguarge(0, context);
                         },
@@ -358,9 +323,7 @@ class LoginPage extends GetView<LoginController> {
                         height: 50,
                         text: "Emglish",
                         textSize: 15,
-                        rightWidget: CheckboxWidget(
-                          checked: controll.isEnglish,
-                        ),
+                        rightWidget: CheckboxWidget(checked: controll.isEnglish),
                         onTap: () {
                           controll.setLanguarge(1, context);
                         },
@@ -406,8 +369,7 @@ class LoginPage extends GetView<LoginController> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true, // 点击背景是否关闭
-      barrierLabel:
-          MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel, //点击关闭折罩
       barrierColor: Colors.black54, // 背景遮罩颜色
       transitionDuration: const Duration(milliseconds: 300), // 动画时长
       pageBuilder: (context, animation, secondaryAnimation) {
@@ -424,40 +386,26 @@ class LoginPage extends GetView<LoginController> {
                   height: 388,
                   decoration: BoxDecoration(
                     color: context.theme.colorScheme.onPrimaryContainer,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                   child: <Widget>[
                     Stack(
                       children: [
-                        TextWidget.h5(
-                          LocaleKeys.commonSwitchNetLine.tr,
-                        ).alignCenter(),
+                        TextWidget.h5(LocaleKeys.commonSwitchNetLine.tr).alignCenter(),
 
                         <Widget>[
                               RotationTransition(
-                                turns: Tween(
-                                  begin: 0.0,
-                                  end: 1.0,
-                                ).animate(controller.refreshNetController),
+                                turns: Tween(begin: 0.0, end: 1.0).animate(controller.refreshNetController),
                                 child: IconWidget.svg(
                                   AssetsSvgs.iconNetLineRefreshSvg,
                                   size: 18,
-                                  color:
-                                      isPress
-                                          ? AppTheme.commonPrimaryPressColor
-                                          : context.colors.scheme.primary,
+                                  color: isPress ? AppTheme.commonPrimaryPressColor : context.colors.scheme.primary,
                                 ),
                               ), // 从0到1表示一圈,)
                               TextWidget.minbody(
                                 LocaleKeys.loginRefresh.tr,
-                                color:
-                                    isPress
-                                        ? AppTheme.commonPrimaryPressColor
-                                        : context.colors.scheme.primary,
+                                color: isPress ? AppTheme.commonPrimaryPressColor : context.colors.scheme.primary,
                               ),
                             ]
                             .toRowSpace(
@@ -501,24 +449,16 @@ class LoginPage extends GetView<LoginController> {
                                 height: 50,
                                 text: netLine.url,
                                 textSize: 15,
-                                rightWidget: CheckboxWidget(
-                                  size: 18,
-                                  checked: netLine.isChecked ?? false,
-                                ),
+                                rightWidget: CheckboxWidget(size: 18, checked: netLine.isChecked ?? false),
                                 onTap: () {
                                   controller.setCurrentNetLine(index);
                                   Get.back();
                                 },
                               ),
                               TextWidget.label(
-                                    netLine.delay != null
-                                        ? "${netLine.delay}ms"
-                                        : "检测中...",
-                                    color: netLine.textColor,
-                                  )
-                                  .align(Alignment.centerRight)
-                                  .height(50)
-                                  .marginOnly(right: 46),
+                                netLine.delay != null ? "${netLine.delay}ms" : "检测中...",
+                                color: netLine.textColor,
+                              ).align(Alignment.centerRight).height(50).marginOnly(right: 46),
                             ],
                           ),
                           SizedBox(height: 10.h),
@@ -556,10 +496,7 @@ class LoginPage extends GetView<LoginController> {
       id: "login",
       builder: (_) {
         // 关键设置：防止布局被键盘顶起
-        return Scaffold(
-          body: SafeArea(bottom: false, child: _buildView(context)),
-          resizeToAvoidBottomInset: false,
-        );
+        return Scaffold(body: SafeArea(bottom: false, child: _buildView(context)), resizeToAvoidBottomInset: false);
       },
     );
   }

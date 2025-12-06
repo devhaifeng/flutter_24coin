@@ -9,9 +9,11 @@ class LocaleKeys {
   static const commonCopySuccess = 'common_copy_success';
   static const commonCopyFail = 'common_copy_faid';
   static const commonNextStep = 'common_next_step';
+  static const commonInputPayPassword = 'common_input_pay_password';
 
   ///登录
   static const commonLogin = 'common_login';
+  static const commonConfirm = 'common_confirm';
   static const loginPhoneCodeHint = 'login_phone_code_hint';
   static const loginPhoneHint = 'login_phone_hint';
   static const loginRememberPassword = 'login_remember_password';
@@ -78,4 +80,9 @@ class LocaleKeys {
   static const walletSendActuallyArrived = 'wallet_send_actually_arrived';
   static const walletSendHandlingFee = 'wallet_send_handling_fee';
   static const walletSendPaste = 'wallet_send_handling_paste';
+  static const walletSendConfirm = 'wallet_send_confirm';
+  static const walletSendAssetType = 'wallet_send_asset_type';
+  static const walletSendPaymentAddress = 'wallet_send_payment_address';
+  static const walletSendFee = 'wallet_send_fee';
+  static const walletSendActualAmountReceived = 'wallet_send_actual_amount_received';
 }

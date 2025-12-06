@@ -1,5 +1,6 @@
 import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
+
 import '../index.dart';
 
 enum IconWidgetType { icon, svg, img }
@@ -129,11 +130,7 @@ class IconWidget extends StatelessWidget {
     Widget icon = const SizedBox.shrink();
     switch (type) {
       case IconWidgetType.icon:
-        icon = Icon(
-          iconData,
-          size: size ?? AppSize.icon,
-          color: color ?? context.colors.scheme.onSurfaceVariant,
-        );
+        icon = Icon(iconData, size: size ?? AppSize.icon, color: color ?? context.colors.scheme.onSurfaceVariant);
       case IconWidgetType.svg:
         icon = ImageWidget.svg(
           path!,
@@ -181,7 +178,7 @@ class IconWidget extends StatelessWidget {
 
     // 2 文字
     if (text != null) {
-      Widget textWidget = TextWidget.muted(text!);
+      Widget textWidget = TextWidget.muted(text!, color: context.colors.scheme.onSecondary);
       if (isExpanded == true) {
         textWidget = textWidget.expanded();
       }
@@ -193,29 +190,18 @@ class IconWidget extends StatelessWidget {
         ws.length == 1
             ? ws[0]
             : isVertical == true
-            ? ws.toColumnSpace(
-              space: AppSpace.iconText,
-              mainAxisSize: MainAxisSize.min,
-            )
+            ? ws.toColumnSpace(space: AppSpace.iconText, mainAxisSize: MainAxisSize.min)
             : ws.toRowSpace(
               space: AppSpace.iconText,
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment:
-                  isExpanded == true
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.center,
+              crossAxisAlignment: isExpanded == true ? CrossAxisAlignment.start : CrossAxisAlignment.center,
             );
 
     // 4 点击事件
     child =
         onTap == null
             ? child
-            : InkWell(
-              onTap: onTap,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: child,
-            );
+            : InkWell(onTap: onTap, splashColor: Colors.transparent, highlightColor: Colors.transparent, child: child);
 
     return child;
   }

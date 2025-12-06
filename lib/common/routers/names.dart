@@ -16,4 +16,10 @@ class RouteNames {
   static const homeWalletWalletUsdtSend = '/home_wallet_wallet_usdt_send';
   // USDT接收
   static const homeWalletWalletUsdtReceive = '/home_wallet_wallet_usdt_receive';
+
+  ///钱包兑换
+  static const homeWalletWalletExchange = '/home_wallet_wallet_exchange';
+
+  ///钱包扫一扫
+  static const homeWalletWalletScan = '/home_wallet_wallet_scan';
 }

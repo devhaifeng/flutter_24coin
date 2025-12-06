@@ -1,8 +1,5 @@
-import 'package:ducafe_ui_core/ducafe_ui_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_24coin/common/style/index.dart';
 import 'package:flutter_24coin/common/widgets/index.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 /// 按钮样式
@@ -72,21 +69,12 @@ class CommonContainer extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: context.theme.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(
-            radius?.toDouble() ?? height! / 2.toDouble(),
-          ),
+          borderRadius: BorderRadius.circular(radius?.toDouble() ?? height! / 2.toDouble()),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (text != null)
-              Text(
-                text!,
-                style: TextStyle(
-                  fontSize: textSize ?? 16,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            if (text != null) Text(text!, style: TextStyle(fontSize: textSize ?? 16, fontWeight: FontWeight.w400)),
             if (input != null) input!,
             if (rightIcon != null) rightIcon!,
             if (rightIcon2 != null) rightIcon2!,

@@ -1,7 +1,31 @@
 
       GetPage(
+        name: RouteNames.homeContract,
+        page: () => const ContractPage(),
+      ),
+      GetPage(
+        name: RouteNames.homeMessage,
+        page: () => const MessagePage(),
+      ),
+      GetPage(
+        name: RouteNames.homeMine,
+        page: () => const MinePage(),
+      ),
+      GetPage(
+        name: RouteNames.homeOtc,
+        page: () => const OtcPage(),
+      ),
+      GetPage(
         name: RouteNames.homeWallet,
         page: () => const WalletPage(),
+      ),
+      GetPage(
+        name: RouteNames.homeWalletWalletExchange,
+        page: () => const WalletExchangePage(),
+      ),
+      GetPage(
+        name: RouteNames.homeWalletWalletScan,
+        page: () => const WalletScanPage(),
       ),
       GetPage(
         name: RouteNames.homeWalletWalletUsdtReceive,
@@ -10,4 +34,24 @@
       GetPage(
         name: RouteNames.homeWalletWalletUsdtSend,
         page: () => const WalletUsdtSendPage(),
+      ),
+      GetPage(
+        name: RouteNames.systemLogin,
+        page: () => const LoginPage(),
+      ),
+      GetPage(
+        name: RouteNames.systemMain,
+        page: () => const MainPage(),
+      ),
+      GetPage(
+        name: RouteNames.systemRegister,
+        page: () => const RegisterPage(),
+      ),
+      GetPage(
+        name: RouteNames.systemSplash,
+        page: () => const SplashPage(),
+      ),
+      GetPage(
+        name: RouteNames.systemWelcome,
+        page: () => const WelcomePage(),
       ),

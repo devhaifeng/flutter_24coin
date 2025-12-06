@@ -14,5 +14,7 @@ class RoutePages {
     GetPage(name: RouteNames.systemRegister, page: () => const RegisterPage()),
     GetPage(name: RouteNames.homeWalletWalletUsdtSend, page: () => const WalletUsdtSendPage()),
     GetPage(name: RouteNames.homeWalletWalletUsdtReceive, page: () => const WalletUsdtReceivePage()),
+    GetPage(name: RouteNames.homeWalletWalletExchange, page: () => const WalletExchangePage()),
+    GetPage(name: RouteNames.homeWalletWalletScan, page: () => const WalletScanPage()),
   ];
 }

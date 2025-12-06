@@ -1,3 +1,14 @@
+export 'home/contract/index.dart';
+export 'home/message/index.dart';
+export 'home/mine/index.dart';
+export 'home/otc/index.dart';
 export 'home/wallet/index.dart';
+export 'home/wallet/wallet_exchange/index.dart';
+export 'home/wallet/wallet_scan/index.dart';
 export 'home/wallet/wallet_usdt_receive/index.dart';
 export 'home/wallet/wallet_usdt_send/index.dart';
+export 'system/login/index.dart';
+export 'system/main/index.dart';
+export 'system/register/index.dart';
+export 'system/splash/index.dart';
+export 'system/welcome/index.dart';

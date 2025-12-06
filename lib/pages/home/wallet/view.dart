@@ -130,54 +130,67 @@ class _WalletViewGetX extends GetView<WalletController> {
                           }
                         }),
                     <Widget>[
-                      ImageWidget.svg(
-                        Get.isDarkMode
-                            ? AssetsSvgs.iconWalletExchangeEnableDarkSvg
-                            : AssetsSvgs.iconWalletExchangeEnableSvg,
-                        width: 40,
-                        height: 40,
-                      ),
-                      TextWidget.label(
-                        LocaleKeys.walletExchange.tr,
-                        size: 14,
-                        color: Get.isDarkMode ? Colors.white : Colors.black,
-                      ),
-                    ].toColumnSpace(
-                      space: 8,
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ),
+                          ImageWidget.svg(
+                            Get.isDarkMode
+                                ? AssetsSvgs.iconWalletExchangeEnableDarkSvg
+                                : AssetsSvgs.iconWalletExchangeEnableSvg,
+                            width: 40,
+                            height: 40,
+                          ),
+                          TextWidget.label(
+                            LocaleKeys.walletExchange.tr,
+                            size: 14,
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
+                          ),
+                        ]
+                        .toColumnSpace(
+                          space: 8,
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        )
+                        .onTap(() {
+                          Get.toNamed(RouteNames.homeWalletWalletExchange);
+                        }),
                     <Widget>[
-                      ImageWidget.svg(
-                        controller.walletIndexData?.type == 3
-                            ? Get.isDarkMode
-                                ? AssetsSvgs.iconWalletSellEnableDarkSvg
-                                : AssetsSvgs.iconWalletSellEnableSvg
-                            : controller.walletIndexData?.type == 4
-                            ? Get.isDarkMode
-                                ? AssetsSvgs.iconWalletScanUnableDarkSvg
-                                : AssetsSvgs.iconWalletScanUnableSvg
-                            : Get.isDarkMode
-                            ? AssetsSvgs.iconWalletScanEnableDarkSvg
-                            : AssetsSvgs.iconWalletScanEnableSvg,
-                        width: 40,
-                        height: 40,
-                      ),
-                      TextWidget.label(
-                        controller.walletIndexData?.type == 3 ? LocaleKeys.walletSell.tr : LocaleKeys.walletScan.tr,
-                        size: 14,
-                        color:
-                            controller.walletIndexData?.type == 4
-                                ? AppTheme.info
+                          ImageWidget.svg(
+                            controller.walletIndexData?.type == 3
+                                ? Get.isDarkMode
+                                    ? AssetsSvgs.iconWalletSellEnableDarkSvg
+                                    : AssetsSvgs.iconWalletSellEnableSvg
+                                : controller.walletIndexData?.type == 4
+                                ? Get.isDarkMode
+                                    ? AssetsSvgs.iconWalletScanUnableDarkSvg
+                                    : AssetsSvgs.iconWalletScanUnableSvg
                                 : Get.isDarkMode
-                                ? Colors.white
-                                : Colors.black,
-                      ),
-                    ].toColumnSpace(
-                      space: 8,
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ),
+                                ? AssetsSvgs.iconWalletScanEnableDarkSvg
+                                : AssetsSvgs.iconWalletScanEnableSvg,
+                            width: 40,
+                            height: 40,
+                          ),
+                          TextWidget.label(
+                            controller.walletIndexData?.type == 3 ? LocaleKeys.walletSell.tr : LocaleKeys.walletScan.tr,
+                            size: 14,
+                            color:
+                                controller.walletIndexData?.type == 4
+                                    ? AppTheme.info
+                                    : Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                        ]
+                        .toColumnSpace(
+                          space: 8,
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        )
+                        .onTap(() {
+                          if (controller.walletIndexData?.type == 3 || controller.walletIndexData?.type == 4) {
+                            // 卖币
+                          } else if (controller.walletIndexData?.type == 1 || controller.walletIndexData?.type == 2) {
+                            // 扫一扫
+                            Get.toNamed(RouteNames.homeWalletWalletScan);
+                          }
+                        }),
                   ].toRow(mainAxisAlignment: MainAxisAlignment.spaceBetween),
                 ].toColumn(mainAxisSize: MainAxisSize.min).padding(left: 55, right: 55)
                 : _buildNoAddressCoinView(context).marginOnly(top: 40), //币种没有地址显示布局

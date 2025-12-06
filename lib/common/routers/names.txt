@@ -1,3 +1,14 @@
+static const homeContract = '/home_contract';
+static const homeMessage = '/home_message';
+static const homeMine = '/home_mine';
+static const homeOtc = '/home_otc';
 static const homeWallet = '/home_wallet';
+static const homeWalletWalletExchange = '/home_wallet_wallet_exchange';
+static const homeWalletWalletScan = '/home_wallet_wallet_scan';
 static const homeWalletWalletUsdtReceive = '/home_wallet_wallet_usdt_receive';
 static const homeWalletWalletUsdtSend = '/home_wallet_wallet_usdt_send';
+static const systemLogin = '/system_login';
+static const systemMain = '/system_main';
+static const systemRegister = '/system_register';
+static const systemSplash = '/system_splash';
+static const systemWelcome = '/system_welcome';

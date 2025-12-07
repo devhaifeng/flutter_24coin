@@ -4,6 +4,7 @@
     "editor.fontFamily": "PingFang HK",
     "editor.fontWeight": "400",
     "editor.formatOnSave": true,
+    "http.proxy": "http://127.0.0.1:7890",
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     },

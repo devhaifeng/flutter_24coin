@@ -346,97 +346,102 @@ class _WalletViewGetX extends GetView<WalletController> {
       );
       var commonDivideColor = Get.isDarkMode ? Color(0xFF2B3843) : Color(0xFFF5F5F5);
       return <Widget>[
-        DropdownButtonHideUnderline(
-          child: DropdownButton2<CoinAllowData>(
-            menuItemStyleData: MenuItemStyleData(
-              overlayColor: WidgetStateProperty.all(Colors.transparent),
-              height: 35,
-              padding: EdgeInsets.only(left: 15, right: 15),
-            ),
-            // 按钮样式
-            customButton: Container(
-              width: double.infinity,
-              color: Theme.of(context).colorScheme.surfaceContainer,
-              height: 50,
-              child: Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(17),
-                  ),
-                  child: <Widget>[
-                        checkItem?.value == 1 || checkItem?.value == 2
-                            ? ImageWidget.svg(checkItem?.assetsPath ?? "", width: 18, height: 18)
-                            : ImageWidget.img(checkItem?.assetsPath ?? "", width: 18, height: 18),
+        <Widget>[
+          Expanded(flex: 1, child: Container(color: Theme.of(context).colorScheme.surfaceContainer).height(50)),
+          DropdownButtonHideUnderline(
+            child: DropdownButton2<CoinAllowData>(
+              menuItemStyleData: MenuItemStyleData(
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
+                height: 35,
+                padding: EdgeInsets.only(left: 15, right: 15),
+              ),
+              // 按钮样式
+              customButton: Container(
+                width: double.infinity,
+                color: Theme.of(context).colorScheme.surfaceContainer,
+                height: 50,
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      borderRadius: BorderRadius.circular(17),
+                    ),
+                    child: <Widget>[
+                          checkItem?.value == 1 || checkItem?.value == 2
+                              ? ImageWidget.svg(checkItem?.assetsPath ?? "", width: 18, height: 18)
+                              : ImageWidget.img(checkItem?.assetsPath ?? "", width: 18, height: 18),
 
-                        SizedBox(width: 6),
-                        TextWidget.label(checkItem!.appDisplay!, size: 15, weight: FontWeight.w400),
-                        SizedBox(width: 2),
-                        IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
-                      ]
-                      .toRow(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                      )
-                      .paddingHorizontal(10)
-                      .height(34),
+                          SizedBox(width: 6),
+                          TextWidget.label(checkItem!.appDisplay!, size: 15, weight: FontWeight.w400),
+                          SizedBox(width: 2),
+                          IconWidget.svg(AssetsSvgs.iconCommonArrowRightSvg, size: 16),
+                        ]
+                        .toRow(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        )
+                        .paddingHorizontal(10)
+                        .height(34),
+                  ),
                 ),
               ),
-            ),
-            dropdownStyleData: DropdownStyleData(
-              width: 175,
-              padding: EdgeInsets.symmetric(vertical: 0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceContainer,
-                borderRadius: BorderRadius.circular(15),
+              dropdownStyleData: DropdownStyleData(
+                width: 175,
+                padding: EdgeInsets.symmetric(vertical: 0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainer,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 0,
+                offset: Offset(0, 0),
+                scrollbarTheme: ScrollbarThemeData(
+                  radius: Radius.circular(15),
+                  thickness: WidgetStateProperty.all(0),
+                  thumbColor: WidgetStateProperty.all(Colors.grey.shade400),
+                ),
               ),
-              elevation: 0,
-              offset: Offset(MediaQuery.of(context).size.width / 2 - 175 / 2, 0),
-              scrollbarTheme: ScrollbarThemeData(
-                radius: Radius.circular(15),
-                thickness: WidgetStateProperty.all(0),
-                thumbColor: WidgetStateProperty.all(Colors.grey.shade400),
-              ),
+              // 扩展
+              isExpanded: false,
+
+              // 提示组件
+              // 下拉项列表
+              items:
+                  controller.allowedCoinList
+                      ?.map(
+                        (item) => DropdownMenuItem<CoinAllowData>(
+                          value: item,
+                          child:
+                              <Widget>[
+                                item.value == 1 || item.value == 2
+                                    ? ImageWidget.svg(item.assetsPath ?? "", width: 18, height: 18)
+                                    : ImageWidget.img(item.assetsPath ?? "", width: 18, height: 18),
+                                SizedBox(width: 7),
+                                TextWidget.label(
+                                  item.appDisplay ?? "",
+                                  color: item.isSelected! ? context.colors.scheme.onSurface : AppTheme.info,
+                                ),
+                                Expanded(
+                                  // 占据剩余空间
+                                  child: SizedBox(), // 使用一个空的SizedBox，或者你可以放置一个空的Container
+                                ),
+                                item.isSelected!
+                                    ? ImageWidget.svg(AssetsSvgs.svgCommonTickSvg, width: 12, height: 9)
+                                    : SizedBox(),
+                              ].toRow(),
+                        ),
+                      )
+                      .toList(),
+
+              // 选中项
+              value: controller.allowedCoinList?.firstWhere((element) => element.isSelected!),
+              // 改变事件
+              onChanged: controller.onSelectorCoinChanged,
             ),
-            // 扩展
-            isExpanded: false,
+          ).width(175),
+          Expanded(flex: 1, child: Container(color: Theme.of(context).colorScheme.surfaceContainer).height(50)),
+        ].toRow(),
 
-            // 提示组件
-            // 下拉项列表
-            items:
-                controller.allowedCoinList
-                    ?.map(
-                      (item) => DropdownMenuItem<CoinAllowData>(
-                        value: item,
-                        child:
-                            <Widget>[
-                              item.value == 1 || item.value == 2
-                                  ? ImageWidget.svg(item.assetsPath ?? "", width: 18, height: 18)
-                                  : ImageWidget.img(item.assetsPath ?? "", width: 18, height: 18),
-                              SizedBox(width: 7),
-                              TextWidget.label(
-                                item.appDisplay ?? "",
-                                color: item.isSelected! ? context.colors.scheme.onSurface : AppTheme.info,
-                              ),
-                              Expanded(
-                                // 占据剩余空间
-                                child: SizedBox(), // 使用一个空的SizedBox，或者你可以放置一个空的Container
-                              ),
-                              item.isSelected!
-                                  ? ImageWidget.svg(AssetsSvgs.svgCommonTickSvg, width: 12, height: 9)
-                                  : SizedBox(),
-                            ].toRow(),
-                      ),
-                    )
-                    .toList(),
-
-            // 选中项
-            value: controller.allowedCoinList?.firstWhere((element) => element.isSelected!),
-            // 改变事件
-            onChanged: controller.onSelectorCoinChanged,
-          ),
-        ),
         Expanded(
           child: NestedScrollView(
             controller: controller.scrollController,
@@ -766,17 +771,13 @@ class _WalletViewGetX extends GetView<WalletController> {
   /// 币种没有地址显示布局
   Widget _buildNoAddressCoinView(BuildContext context) {
     return <Widget>[
-      ImageWidget.svg(
-        controller.walletIndexData?.type == 1
-            ? AssetsSvgs.iconWalletTrcCoinSvg
-            : controller.walletIndexData?.type == 2
-            ? AssetsSvgs.iconWalletErcCoinSvg
-            : controller.walletIndexData?.type == 3
-            ? AssetsImages.iconWalletCoinPng
-            : AssetsImages.iconWalletCoin2Png,
-        width: 60,
-        height: 60,
-      ),
+      controller.walletIndexData?.type == 1
+          ? ImageWidget.svg(AssetsSvgs.iconWalletTrcCoinSvg, width: 60, height: 60)
+          : controller.walletIndexData?.type == 2
+          ? ImageWidget.svg(AssetsSvgs.iconWalletErcCoinSvg, width: 60, height: 60)
+          : controller.walletIndexData?.type == 3
+          ? ImageWidget.img(AssetsImages.iconWalletCoinPng, width: 60, height: 60)
+          : ImageWidget.img(AssetsImages.iconWalletCoin2Png, width: 60, height: 60),
       SizedBox(height: 20),
       TextWidget.label("暂未生成地址，无法使用相应功能", size: 14, color: context.colors.scheme.onSecondary),
       SizedBox(height: 15),

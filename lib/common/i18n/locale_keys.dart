@@ -85,4 +85,8 @@ class LocaleKeys {
   static const walletSendPaymentAddress = 'wallet_send_payment_address';
   static const walletSendFee = 'wallet_send_fee';
   static const walletSendActualAmountReceived = 'wallet_send_actual_amount_received';
+
+  ///扫一扫
+  static const walletScanTitle = 'wallet_scan_title';
+  static const walletScanAlbum = 'wallet_scan_album';
 }

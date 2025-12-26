@@ -78,4 +78,8 @@ Map<String, String> localeZh = {
   LocaleKeys.walletSendPaymentAddress: '收款地址',
   LocaleKeys.walletSendFee: '手续费',
   LocaleKeys.walletSendActualAmountReceived: '实际到账金额',
+
+  /// 扫一扫
+  LocaleKeys.walletScanTitle: '扫一扫',
+  LocaleKeys.walletScanAlbum: '相册',
 };

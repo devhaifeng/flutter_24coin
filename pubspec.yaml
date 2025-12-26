@@ -73,6 +73,8 @@ dependencies:
   # 弹窗
   flutter_smart_dialog: ^4.9.8
   pinput: ^6.0.1
+  # 扫码
+  mobile_scanner: ^7.1.4
 
 dev_dependencies:
   flutter_test:

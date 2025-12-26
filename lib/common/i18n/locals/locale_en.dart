@@ -80,4 +80,6 @@ Map<String, String> localeEn = {
   LocaleKeys.walletSendPaymentAddress: 'Payment Address',
   LocaleKeys.walletSendFee: 'Fee',
   LocaleKeys.walletSendActualAmountReceived: 'Actual Amount Received',
+  LocaleKeys.walletScanTitle: 'Scan',
+  LocaleKeys.walletScanAlbum: 'Album',
 };
